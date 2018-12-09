@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
-/dist
+
+# dist/apiは残す
+/dist/js
+/dist/index.html
 
 # local env files
 .env.local
