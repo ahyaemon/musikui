@@ -1,11 +1,14 @@
 import Formula from "./Formula"
 import Hissan from "./Hissan"
 import Respondent from "./Respondent"
+import { Difficulty } from "@/domain/Difficulty"
 
-export default class Muskui {
+export default class Musikui {
+
+    public difficulty: Difficulty
 
     constructor(
-        readonly musikui_id: number,
+        readonly id: number,
         readonly level: number,
         readonly comment: string,
         readonly mark: string,
@@ -15,6 +18,16 @@ export default class Muskui {
         readonly nrow: number,
         readonly ncol: number,
         readonly respondents: Respondent[],
-    ) {}
+    ) {
+        if (this.level <= 3) {
+            this.difficulty = Difficulty.Easy
+        } else if (this.level <= 6) {
+            this.difficulty = Difficulty.Normal
+        } else if (this.level <= 9) {
+            this.difficulty = Difficulty.Hard
+        } else {
+            this.difficulty = Difficulty.Hell
+        }
+    }
 
 }

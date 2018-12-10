@@ -4,11 +4,9 @@
     require_once(Path::infra()."/ContestSql.php");
     class ContestRepository {
 
-        public static function find_current_contest() {
+        public static function find_current_contest_id() {
             $sql = ContestSql::select_current_contest_id();
-            $current_contest_id = SqlExecuter::select_one($sql)["contest_id"];
-            return ContestRepository::find_contest_by_id($current_contest_id);
-
+            return SqlExecuter::select_one($sql)["contest_id"];
         }
 
         public static function find_contest_by_id($contest_id) {
@@ -73,70 +71,6 @@
                 "musikuis" => $musikuis
             ];
             return $contest;
-        }
-
-        /**
-         * コンテストを登録する
-         * @return 新規採番されたidを返す
-         */
-        public static function add_one($contest) {
-            $insert_sql = ContestSql::insert([$contest]);
-            SqlExecuter::insert($insert_sql);
-            $select_sql = ContestSql::select_id([$contest]);
-            $ids = SqlExecuter::select($select_sql);
-            return $ids[0]["id"];
-        }
-
-        /**
-         * コンテスト-虫食い関連テーブルを登録する
-         */
-        public static function add_contest_musikuis($contest_musikuis) {
-            $insert_sql = ContestSql::insert_contest_musikui($contest_musikuis);
-            SqlExecuter::insert($insert_sql);
-        }
-
-        public static function find_recent_contest($amount) {
-            $sql = ContestSql::select_recent_contest($amount);
-            $result = SqlExecuter::select($sql);
-            // currentかどうかの判断をする
-            $result = array_map(function($record) {
-                if(isset($record["contest_id"])) {
-                    $record["current"] = true;
-                }
-                else {
-                    $record["current"] = false;
-                }
-                return $record;
-            }, $result);
-
-            return $result;
-        }
-
-        public static function update_current_contest($contest_id) {
-            $sql = ContestSql::update_current_contest($contest_id);
-            SqlExecuter::update($sql);
-        }
-
-        public static function find_date_by_contest_id($contest_id) {
-            $sql = ContestSql::find_date_by_contest_id($contest_id);
-            return SqlExecuter::select_one($sql)["date"];
-        }
-
-        public static function find_current_contest_id() {
-            $sql = ContestSql::select_current_contest_id();
-            return SqlExecuter::select_one($sql)["contest_id"];
-        }
-
-        public static function find_old_contest_infos() {
-            $sql = "SELECT * FROM contest ORDER BY id DESC";
-            $result = SqlExecuter::select($sql);
-            $infos = array_map(function($record) {
-                return [
-                    "contest_number" => $record["id"],
-                    "date" => $record["date"]
-                ];
-            }, $result);
-            return $infos;
         }
 
     }

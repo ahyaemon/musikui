@@ -3,33 +3,18 @@ import Musikui from "../../domain/Musikui"
 import Respondent from "../../domain/Respondent"
 import { Difficulty } from "../../domain/Difficulty"
 
+/**
+ * 「今週の問題」ページに必要なデータ
+ */
 export interface NewContestState {
     current_contest: Contest
     prev_contest: Contest
 }
 
-export interface LastRespondent {
-    respondent: Respondent
-    question_number: number
-    level: number
-}
-
-export interface Jump {
-    question_number: number
-    level: number
-    difficulty: Difficulty
-}
-
-export interface Top {
-    date: Date,
-    next_date: Date,
-    comment: string,
-    last_respondents: LastRespondent[]
-    jumps: Jump[]
-}
-
+/**
+ * 虫食い記事に必要なデータ
+ */
 export interface MusikuiArticle {
+    header: string
     musikui: Musikui
-    question_number: number
-    difficulty: Difficulty
 }

@@ -9,10 +9,10 @@
             $current_contest_id = ContestRepository::find_current_contest_id();
 
             // IDからContestを取得
-            $current_contest = ContestRepository:: find_by_id($current_contest_id);
+            $current_contest = ContestRepository:: find_contest_by_id($current_contest_id);
 
             // 先週のContestを取得
-            $prev_contest = ContestRepository::find_by_id($current_contest_id - 1);
+            $prev_contest = ContestRepository::find_contest_by_id($current_contest_id - 1);
 
             $new_contest = [
                 "current_contest" => $current_contest,
@@ -25,7 +25,7 @@
     // GET
     if(count($_GET) > 0){
         $mapping = $_GET["mapping"];
-        if($mapping == "get_recent_contest") {
+        if($mapping == "get") {
             $json = NewContestController::get();
             echo $json;
         }

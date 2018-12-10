@@ -11,24 +11,29 @@ export default class Fetcher {
     public static async get(fetch_params: FetchParams): Promise<any> {
         const params = fetch_params.params
         params.mapping = fetch_params.method
-        await axios.get("api/" + fetch_params.controller, {
+
+        let res
+        await axios.get("/api/web/" + fetch_params.controller, {
             params,
         })
         .then((response) => {
-            return response
+            res = response.data
         })
         .catch((err) => {
             throw err
         })
+
+        return res
     }
 
     public static async post(fetch_params: FetchParams): Promise<any> {
-        let res
         const search_params = new URLSearchParams()
         search_params.append("mapping", fetch_params.method)
         for (const key of Object.keys(fetch_params.params)) {
             search_params.append(key, fetch_params.params[key])
         }
+
+        let res
         await axios.post("api/" + fetch_params.controller,
             search_params,
             {
@@ -36,7 +41,7 @@ export default class Fetcher {
             },
         )
         .then((response) => {
-            res = response
+            res = response.data
         })
         .catch((err) => {
             return err
@@ -56,6 +61,7 @@ export default class Fetcher {
             form_data.append(file!.name, file!)
         }
 
+        let res
         await axios.post("api/" + fetch_params.controller,
             form_data,
             {
@@ -63,11 +69,13 @@ export default class Fetcher {
             },
         )
         .then((response) => {
-            return response
+            res = response.data
         })
         .catch((err) => {
             return err
         })
+
+        return res
     }
 
 }

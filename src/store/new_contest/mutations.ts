@@ -1,15 +1,27 @@
 import { MutationTree } from "vuex"
 import { NewContestState } from "./types"
-import Contest from "../../domain/Contest"
+import ContestFactory from "@/domain/factory/ContestFactory"
+import MusikuiDate from "@/value_object/MusikuiDate"
+import Musikui from "@/domain/Musikui"
 
 export const mutations: MutationTree<NewContestState> = {
 
-    set_current_contest(state, current_contest: Contest) {
-        state.current_contest = current_contest
+    /**
+     * オブジェクトを受け取り、Contestに変換してからstateにセットする
+     * @param state
+     * @param contest Contestの内容を保持するオブジェクト
+     */
+    set_current_contest(state, contest: any) {
+        state.current_contest = ContestFactory.from_object(contest)
     },
 
-    set_prev_contest(state, prev_contest: Contest) {
-        state.prev_contest = prev_contest
+    /**
+     * オブジェクトを受け取り、Contestに変換してからstateにセットする
+     * @param state
+     * @param contest Contestの内容を保持するオブジェクト
+     */
+    set_prev_contest(state, contest: any) {
+        state.prev_contest = ContestFactory.from_object(contest)
     },
 
 }

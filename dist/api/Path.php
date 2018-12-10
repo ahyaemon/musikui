@@ -3,23 +3,19 @@
 class Path {
 
     private static function root() {
-        return dirname(__FILE__)."/..";
-    }
-
-    public static function domain() {
-        return Path::root()."/src/domain";
+        return dirname(__FILE__);
     }
 
     public static function infra() {
-        return Path::root()."/src/infra";
+        return Path::root()."/infra";
     }
 
     public static function web() {
-        return Path::root()."/src/web";
+        return Path::root()."/web";
     }
 
     public static function db() {
-        return Path::root()."/resources/db";
+        return Path::root()."/db";
     }
 
     public static function utils() {
