@@ -1,24 +1,18 @@
 import { MutationTree } from "vuex"
-import { SearchQuestonState } from "./types"
+import { SearchQuestonState, OldContestInfo } from "./types"
 
 export const mutations: MutationTree<SearchQuestonState> = {
 
-    // /**
-    //  * オブジェクトを受け取り、Contestに変換してからstateにセットする
-    //  * @param state
-    //  * @param contest Contestの内容を保持するオブジェクト
-    //  */
-    // set_current_contest(state, contest: any) {
-    //     state.current_contest = ContestFactory.from_object(contest)
-    // },
+    set_max_level(state, level: number) {
+        state.max_level = level
+    },
 
-    // /**
-    //  * オブジェクトを受け取り、Contestに変換してからstateにセットする
-    //  * @param state
-    //  * @param contest Contestの内容を保持するオブジェクト
-    //  */
-    // set_prev_contest(state, contest: any) {
-    //     state.prev_contest = ContestFactory.from_object(contest)
-    // },
+    set_max_col(state, col: number) {
+        state.max_col = col
+    },
+
+    set_old_contest_infos(state, contest_infos: OldContestInfo[]) {
+        state.old_contest_infos = contest_infos
+    },
 
 }

@@ -10,11 +10,3 @@ export interface NewContestState {
     current_contest: Contest
     prev_contest: Contest
 }
-
-/**
- * 虫食い記事に必要なデータ
- */
-export interface MusikuiArticle {
-    header: string
-    musikui: Musikui
-}

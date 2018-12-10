@@ -47,7 +47,7 @@
     import MRespondentList from "@/components/contest/MRespondentList.vue"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
-    import { MusikuiArticle } from "@/store/new_contest/types"
+    import MusikuiArticle from "@/domain/MusikuiArticle"
     const namespace = "new_contest_store"
 
     @Component({

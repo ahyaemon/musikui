@@ -4,6 +4,7 @@ import HowView from "../views/general/HowView.vue"
 import WhatView from "../views/general/how/WhatView.vue"
 import DansaMagicView from "../views/general/how/DansaMagicView.vue"
 import SearchQuestionView from "../views/general/SearchQuestionView.vue"
+import SearchResultView from "../views/general/SearchResultView.vue"
 import ColumnView from "../views/general/ColumnView.vue"
 import AboutView from "../views/general/AboutView.vue"
 
@@ -16,6 +17,8 @@ export default {
         { path: "/how/what-is-musikuizan", meta: { title: "虫食い算とは | 虫食い算やろうぜ！！" }, component: WhatView },
         { path: "/how/dansa-magic", meta: { title: "桁数の段差マジック | 虫食い算やろうぜ！！" }, component: DansaMagicView },
         { path: "/search-question", meta: { title: "検索 | 虫食い算やろうぜ！！" }, component: SearchQuestionView },
+        { path: "/search-result/:min_level/:max_level/:plus_selected/:multiple_selected/:divide_selected/:min_col/:max_col",
+            meta: { title: "検索結果 | 虫食い算やろうぜ！！" }, component: SearchResultView },
         { path: "/column", meta: { title: "コラム | 虫食い算やろうぜ！！" }, component: ColumnView },
         { path: "/about", meta: { title: "About | 虫食い算やろうぜ！！" }, component: AboutView },
     ],

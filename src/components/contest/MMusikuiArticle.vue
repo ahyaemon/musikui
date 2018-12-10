@@ -36,7 +36,7 @@
     import MAnswerForm from "./MAnswerForm.vue"
     import MRespondentList from "./MRespondentList.vue"
     import { Getter, Action } from "vuex-class"
-    import { MusikuiArticle } from "@/store/new_contest/types"
+    import MusikuiArticle from "@/domain/MusikuiArticle"
     const namespace = "new_contest_store"
 
     @Component({

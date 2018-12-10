@@ -17,6 +17,7 @@
     "no-consecutive-blank-lines": false,
     "semicolon": [true, "never"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-snake-case"],
-    "no-empty": false
+    "no-empty": false,
+    "max-line-length": false
   }
 }

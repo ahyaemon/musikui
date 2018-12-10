@@ -59,39 +59,24 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component, Emit } from "vue-property-decorator"
-    import axios from "axios"
-    import { SearchCondition } from "@/store/search_question/types"
+    import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action } from "vuex-class"
-    const namespace: string = "search_question"
+    const namespace: string = "search_question_store"
 
     @Component
     export default class SearchForm extends Vue {
         @Getter("search_condition", { namespace }) private search_condition!: SearchCondition
-        @Action("search_question", { namespace }) private search_question!: any
-        @Getter("max_level", { namespace }) private max_level!: any
-        @Getter("max_col", { namespace }) private max_col!: any
-        @Action("fetch_max_level_and_col", { namespace }) private fetch_max_level_and_col!: any
+        @Getter("max_level", { namespace }) private max_level!: number
+        @Getter("max_col", { namespace }) private max_col!: number
+        @Getter("search_url", { namespace }) private search_url!: string
+        @Action("search_question", { namespace }) private search_question!: () => void
 
-        private mounted() {
-            this.fetch_max_level_and_col()
-        }
 
         private search() {
             this.search_question()
+            this.$router.push(this.search_url)
         }
 
-        private get search_to(): string {
-            let to = "/search-question/search-result"
-            to += `/${this.search_condition.min_level}`
-            to += `/${this.search_condition.max_level}`
-            to += `/${Number(this.search_condition.plus_selected)}`
-            to += `/${Number(this.search_condition.multiple_selected)}`
-            to += `/${Number(this.search_condition.divide_selected)}`
-            to += `/${this.search_condition.min_col}`
-            to += `/${this.search_condition.max_col}`
-
-            return to
-        }
     }
 </script>
 
