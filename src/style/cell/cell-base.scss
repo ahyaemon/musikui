@@ -1,0 +1,23 @@
+@import "./cell-pc.scss";
+@import "./cell-mobile.scss";
+
+@mixin cell-base {
+    @include cell-pc;
+    @include cell-mobile;
+
+    .bar {
+        background-color: black;
+    }
+
+    input {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /** TODO divideの設定はここで上書きする */
+    .cell-divide {
+        position: relative;
+        width: auto !important;
+    }
+}

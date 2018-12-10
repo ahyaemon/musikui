@@ -1,10 +1,14 @@
 import Vue from "vue"
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faDove } from "@fortawesome/free-solid-svg-icons"
+import { faDove, faEdit, faCompactDisc } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 export default (): void => {
-    library.add(faDove)
+    library.add(
+        faDove,
+        faEdit,
+        faCompactDisc,
+    )
     Vue.component("fas", FontAwesomeIcon as any)
 }
 

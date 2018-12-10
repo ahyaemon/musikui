@@ -5,36 +5,26 @@
     <article class="musikui-article m-card">
         <div class="header">
             <span>
-                <i class="fas fa-edit"></i>
+                <fas icon="edit"/>
                 {{ article.header }}
             </span>
-            <!-- <p>
-                <i class="fas fa-edit"></i>
-                <span>
-                    <slot></slot>
-                    Q{{ article.question_number }}
-                </span>
-                <span> - </span>
-                <span>{{ article.difficulty }}</span>
-                <span>Lv.{{ article.musikui.level }}</span>
-            </p> -->
         </div>
 
         <div class="comment">
             <span>{{ article.musikui.comment }}</span>
         </div>
 
-        <!-- <div class="question">
-            <MusikuiTable :hissan="article.musikui.hissan_question" />
+        <div class="question">
+            <MMusikuiTable :hissan="article.musikui.hissan_question" />
         </div>
 
         <div class="answer">
-            <AnswerForm :formula="article.musikui.formula" :mark="article.musikui.mark" :musikui_id="article.musikui.id"/>
+            <MAnswerForm :formula="article.musikui.formula" :mark="article.musikui.mark" :musikui_id="article.musikui.id"/>
         </div>
 
         <div class="respondent">
-            <RespondentList :respondents="article.musikui.respondents"/>
-        </div> -->
+            <MRespondentList :respondents="article.musikui.respondents"/>
+        </div>
 
     </article>
 </template>
@@ -42,11 +32,20 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component, Prop } from "vue-property-decorator"
+    import MMusikuiTable from "./MMusikuiTable.vue"
+    import MAnswerForm from "./MAnswerForm.vue"
+    import MRespondentList from "./MRespondentList.vue"
     import { Getter, Action } from "vuex-class"
     import { MusikuiArticle } from "@/store/new_contest/types"
     const namespace = "new_contest_store"
 
-    @Component
+    @Component({
+        components: {
+            MMusikuiTable,
+            MAnswerForm,
+            MRespondentList,
+        },
+    })
     export default class MMusikuiArticle extends Vue {
 
         @Prop() private article!: MusikuiArticle

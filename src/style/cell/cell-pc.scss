@@ -1,0 +1,59 @@
+@mixin cell-pc() {
+    $pcmin: 768px;
+    @media screen and (min-width: $pcmin){
+
+        $sizes: (
+            (
+                cols: (2, 3, 4, 5, 6),
+                weight: 10
+            ),
+            (
+                cols: (7, 8, 9, 10),
+                weight: 8
+            ),
+            (
+                cols: (11, 12, 13, 14, 15),
+                weight: 6
+            ),
+            (
+                cols: (16, 17, 18, 19, 20),
+                weight: 5
+            ),
+            (
+                cols: (21, 22, 23, 24, 25),
+                weight: 4
+            ),
+            (
+                cols: (26, 27, 28, 29, 30, 31, 32),
+                weight: 3
+            ),
+            (
+                cols: (33, 34, 35, 36, 37, 38, 39, 40, 41, 42),
+                weight: 2.5
+            ),
+            (
+                cols: (43, 44, 45, 46, 47, 48, 49, 50),
+                weight: 2
+            )
+        );
+
+        @each $size in $sizes {
+            @each $i in map-get($size, cols) {
+                .ncol-#{$i} {
+                    $weight: map-get($size, weight);
+                    .cell {
+                        width: 10px * $weight;
+                        height: 12px * $weight;
+                        padding: 6px * $weight / 10;
+                        font-size: 6px * $weight;
+                    }
+
+                    .bar {
+                        height: 4px * $weight / 10;
+                    }
+                }
+            }
+        }
+
+    }
+}

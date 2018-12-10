@@ -14,12 +14,10 @@
                 <div v-if="respondent_displayed">
                     <div v-for="(musikui, imusikui) in prev_contest.musikuis" :key="musikui.id">
                         <p>
+                            <fas icon="compact-disc"/>
                             <span>Q{{ imusikui + 1 }}(Lv.{{ musikui.level }})</span>
                         </p>
-                        <p>回答者</p>
-                        <p v-for="(respondent, irespondent) in musikui.respondents" :key="respondent.id">
-                            <span>{{ irespondent + 1 }}位 {{ respondent.name }}さん: {{ respondent.comment }}</span>
-                        </p>
+                        <MRespondentList :respondents="musikui.respondents"/>
                     </div>
                 </div>
             </div>
@@ -28,7 +26,7 @@
 
             <hr>
 
-            <p v-for="(musikui, imusikui) in prev_contest.musikuis" :key="imusikui" class="jump">
+            <p v-for="(musikui, imusikui) in current_contest.musikuis" :key="imusikui" class="jump">
                 <a href="#" v-scroll-to="'#a' + (imusikui + 1)" >
                     <span>Q{{ imusikui + 1 }}(Lv. {{ musikui.level }} {{ musikui.difficulty }})へJump!!</span>
                     <fas icon="dove"/>
@@ -45,7 +43,8 @@
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
     import MCard from "@/components/MCard.vue"
-    import MMusikuiArticle from "@/components/musikui/MMusikuiArticle.vue"
+    import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
+    import MRespondentList from "@/components/contest/MRespondentList.vue"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import { MusikuiArticle } from "@/store/new_contest/types"
@@ -55,6 +54,7 @@
         components: {
             MCard,
             MMusikuiArticle,
+            MRespondentList,
         },
     })
     export default class NewContestView extends Vue {
