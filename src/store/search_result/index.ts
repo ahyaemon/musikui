@@ -17,7 +17,7 @@ export const state: SearchResultState = {
         min_col: 1,
         max_col: 10,
     },
-    musikui_articles: [],
+    musikuis_with_contest_info: [],
 }
 
 export const search_result_store: Module<SearchResultState, RootState> = {

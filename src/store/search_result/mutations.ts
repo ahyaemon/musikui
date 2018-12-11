@@ -1,18 +1,25 @@
 import { MutationTree } from "vuex"
 import { SearchResultState } from "./types"
+import SearchCondition from "@/domain/SearchCondition"
+import Musikui from "@/domain/Musikui"
+import ContestFactory from "@/domain/factory/ContestFactory"
+import MusikuiDate from "@/value_object/MusikuiDate"
+import MusikuiFactory from "@/domain/factory/MusikuiFactory"
 
 export const mutations: MutationTree<SearchResultState> = {
 
-    // set_max_level(state, level: number) {
-    //     state.max_level = level
-    // },
+    set_searched_condition(state, condition: SearchCondition): void {
+        state.searched_condition = condition
+    },
 
-    // set_max_col(state, col: number) {
-    //     state.max_col = col
-    // },
-
-    // set_old_contest_infos(state, contest_infos: OldContestInfo[]) {
-    //     state.old_contest_infos = contest_infos
-    // },
+    set_musikuis_with_contest_info(state, records: any[]): void {
+        state.musikuis_with_contest_info = records.map((record) => {
+            return {
+                date: new MusikuiDate(record.date),
+                question_number: record.question_number,
+                musikui: MusikuiFactory.from_object(record.musikui),
+            }
+        })
+    },
 
 }
