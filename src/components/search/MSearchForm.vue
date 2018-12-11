@@ -69,11 +69,8 @@
         @Getter("max_level", { namespace }) private max_level!: number
         @Getter("max_col", { namespace }) private max_col!: number
         @Getter("search_url", { namespace }) private search_url!: string
-        @Action("search_question", { namespace }) private search_question!: () => void
-
 
         private search() {
-            this.search_question()
             this.$router.push(this.search_url)
         }
 

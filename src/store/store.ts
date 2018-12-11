@@ -2,6 +2,7 @@ import Vue from "vue"
 import Vuex, { StoreOptions } from "vuex"
 import { RootState } from "./types"
 import { new_contest_store } from "./new_contest/index"
+import { old_contest_store } from "./old_contest/index"
 import { search_question_store } from "./search_question/index"
 import { search_result_store } from "./search_result/index"
 
@@ -13,6 +14,7 @@ const store: StoreOptions<RootState> = {
     },
     modules: {
         new_contest_store,
+        old_contest_store,
         search_question_store,
         search_result_store,
     },

@@ -1,5 +1,6 @@
 import GeneralView from "../views/general/GeneralView.vue"
 import NewContestView from "../views/general/NewContestView.vue"
+import OldContestView from "../views/general/OldContestView.vue"
 import HowView from "../views/general/HowView.vue"
 import WhatView from "../views/general/how/WhatView.vue"
 import DansaMagicView from "../views/general/how/DansaMagicView.vue"
@@ -19,6 +20,7 @@ export default {
         { path: "/search-question", meta: { title: "検索 | 虫食い算やろうぜ！！" }, component: SearchQuestionView },
         { path: "/search-result/:min_level/:max_level/:plus_selected/:multiple_selected/:divide_selected/:min_col/:max_col",
             meta: { title: "検索結果 | 虫食い算やろうぜ！！" }, component: SearchResultView },
+        { path: "/old-contest/:contest_id", meta: { title: "過去の問題 | 虫食い算やろうぜ！！" }, component: OldContestView },
         { path: "/column", meta: { title: "コラム | 虫食い算やろうぜ！！" }, component: ColumnView },
         { path: "/about", meta: { title: "About | 虫食い算やろうぜ！！" }, component: AboutView },
     ],

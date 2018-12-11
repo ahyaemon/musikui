@@ -23,15 +23,8 @@
             </div>
             <p>次回は {{ current_contest.get_next_sunday() }} になります。</p>
             <p>それでは、問題をお楽しみください</p>
-
             <hr>
-
-            <p v-for="(musikui, imusikui) in current_contest.musikuis" :key="imusikui" class="jump">
-                <a href="#" v-scroll-to="'#a' + (imusikui + 1)" >
-                    <span>Q{{ imusikui + 1 }}(Lv. {{ musikui.level }} {{ musikui.difficulty }})へJump!!</span>
-                    <fas icon="dove"/>
-                </a>
-            </p>
+            <MJumpList :musikuis="current_contest.musikuis"/>
         </MCard>
 
         <MCard v-for="(article, iarticle) in musikui_articles" :key="iarticle" :id="'a' + (iarticle + 1)">
@@ -45,6 +38,7 @@
     import MCard from "@/components/MCard.vue"
     import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
     import MRespondentList from "@/components/contest/MRespondentList.vue"
+    import MJumpList from "@/components/contest/MJumpList.vue"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/domain/MusikuiArticle"
@@ -55,13 +49,14 @@
             MCard,
             MMusikuiArticle,
             MRespondentList,
+            MJumpList,
         },
     })
     export default class NewContestView extends Vue {
 
         @Getter("prev_contest", { namespace }) private prev_contest!: Contest
         @Getter("current_contest", { namespace }) private current_contest!: Contest
-        @Getter("create_musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle[]
+        @Getter("musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle[]
         @Action("fetch_new_contest", { namespace }) private fetch_new_contest!: () => void
         private respondent_displayed: boolean = false
 
@@ -79,9 +74,4 @@
 </script>
 
 <style lang="scss" scoped>
-    .jump {
-        a {
-            text-decoration: none;
-        }
-    }
 </style>

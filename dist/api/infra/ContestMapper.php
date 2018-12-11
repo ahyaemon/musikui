@@ -81,7 +81,7 @@
                 "id" => $result[0]["contest_id"],
                 "date" => $result[0]["contest_date"],
                 "comment" => $result[0]["contest_comment"],
-                "musikuis" => $musikuis
+                "musikuis" => array_values($musikuis)
             ];
             return $contest;
         }

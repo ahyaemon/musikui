@@ -2,6 +2,8 @@ import { ActionTree } from "vuex"
 import { SearchQuestonState } from "./types"
 import { RootState } from "../types"
 import fetcher from "../../util/fetcher"
+import SearchCondition from "@/domain/SearchCondition"
+import SearchConditionFactory from "@/domain/factory/SearchConditionFactory"
 
 export const actions: ActionTree<SearchQuestonState, RootState> = {
 
@@ -26,8 +28,9 @@ export const actions: ActionTree<SearchQuestonState, RootState> = {
         })
     },
 
-    search_question({ commit }): void {
-
+    set_search_condition({ commit }, params: any): void {
+        const condition: SearchCondition = SearchConditionFactory.from_url_params(params)
+        commit("set_search_condition", condition)
     },
 
 }

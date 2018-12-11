@@ -16,4 +16,30 @@ export const getters: GetterTree<SearchResultState, RootState> = {
         })
     },
 
+    search_result_label(state): string {
+        const condition = state.searched_condition
+        let label = ""
+        label += `レベル: ${condition.min_level}～${condition.max_level}`
+        label += " / "
+        label += "タイプ: ["
+        if (condition.plus_selected) {
+            label += "＋"
+        }
+        if (condition.multiple_selected) {
+            label += "×"
+        }
+        if (condition.divide_selected) {
+            label += "÷"
+        }
+        label += "]"
+        label += " / "
+        label += `列数: ${condition.min_col}～${condition.max_col}`
+
+        return label
+    },
+
+    search_result_amount(state): number {
+        return state.musikuis_with_contest_info.length
+    },
+
 }

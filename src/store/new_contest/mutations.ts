@@ -1,8 +1,6 @@
 import { MutationTree } from "vuex"
 import { NewContestState } from "./types"
 import ContestFactory from "@/domain/factory/ContestFactory"
-import MusikuiDate from "@/value_object/MusikuiDate"
-import Musikui from "@/domain/Musikui"
 
 export const mutations: MutationTree<NewContestState> = {
 
