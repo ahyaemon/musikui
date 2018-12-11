@@ -2,29 +2,31 @@
     <div>
         <MCard class="top">
             <h2>今週の問題</h2>
-            <p>{{ current_contest.get_date() }}</p>
-            <p>{{ current_contest.comment }}</p>
+                <MCardBody>
+                <p>{{ current_contest.get_date() }}</p>
+                <p>{{ current_contest.comment }}</p>
 
-            <div>
-                <a @click="switch_respondent_displayed">
-                    <span v-if="respondent_displayed">▼</span>
-                    <span v-else>▶</span>
-                    先週の覇者
-                </a>
-                <div v-if="respondent_displayed">
-                    <div v-for="(musikui, imusikui) in prev_contest.musikuis" :key="musikui.id">
-                        <p>
-                            <fas icon="compact-disc"/>
-                            <span>Q{{ imusikui + 1 }}(Lv.{{ musikui.level }})</span>
-                        </p>
-                        <MRespondentList :respondents="musikui.respondents"/>
+                <div>
+                    <a @click="switch_respondent_displayed">
+                        <span v-if="respondent_displayed">▼</span>
+                        <span v-else>▶</span>
+                        先週の覇者
+                    </a>
+                    <div v-if="respondent_displayed">
+                        <div v-for="(musikui, imusikui) in prev_contest.musikuis" :key="musikui.id">
+                            <p>
+                                <fas icon="compact-disc"/>
+                                <span>Q{{ imusikui + 1 }}(Lv.{{ musikui.level }})</span>
+                            </p>
+                            <MRespondentList :respondents="musikui.respondents"/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <p>次回は {{ current_contest.get_next_sunday() }} になります。</p>
-            <p>それでは、問題をお楽しみください</p>
-            <hr>
-            <MJumpList :musikuis="current_contest.musikuis"/>
+                <p>次回は {{ current_contest.get_next_sunday() }} になります。</p>
+                <p>それでは、問題をお楽しみください</p>
+                <hr>
+                <MJumpList :musikuis="current_contest.musikuis"/>
+            </MCardBody>
         </MCard>
 
         <MCard v-for="(article, iarticle) in musikui_articles" :key="iarticle" :id="'a' + (iarticle + 1)">
@@ -36,6 +38,7 @@
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
     import MCard from "@/components/MCard.vue"
+    import MCardBody from "@/components/MCardBody.vue"
     import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
     import MRespondentList from "@/components/contest/MRespondentList.vue"
     import MJumpList from "@/components/contest/MJumpList.vue"
@@ -47,6 +50,7 @@
     @Component({
         components: {
             MCard,
+            MCardBody,
             MMusikuiArticle,
             MRespondentList,
             MJumpList,

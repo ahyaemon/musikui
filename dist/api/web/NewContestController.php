@@ -36,5 +36,4 @@
         $mapping = $_POST["mapping"];
     }
 
-
 ?>
