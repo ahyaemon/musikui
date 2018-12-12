@@ -1,9 +1,9 @@
 <template>
     <div id="search">
-        <div id="search-header">
+        <MCardSubtitle>
             <h3>検索</h3>
-        </div>
-        <div id="search-content">
+        </MCardSubtitle>
+        <MCardBody>
             <form>
                 <div>
                     <span>レベル:</span>
@@ -52,18 +52,24 @@
                     <button type="button" class="bt red" @click="search">検索</button>
                 </div>
             </form>
-        </div>
+        </MCardBody>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue"
     import { Component, Emit } from "vue-property-decorator"
+    import { MCardBody, MCardSubtitle } from "@/components/card"
     import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action } from "vuex-class"
     const namespace: string = "search_question_store"
 
-    @Component
+    @Component({
+        components: {
+            MCardSubtitle,
+            MCardBody,
+        },
+    })
     export default class SearchForm extends Vue {
         @Getter("search_condition", { namespace }) private search_condition!: SearchCondition
         @Getter("max_level", { namespace }) private max_level!: number
@@ -81,10 +87,6 @@
     #search {
         background-color: white;
         margin: 0px 0 10px 0;
-
-        #search-content {
-            margin: 10px;
-        }
 
         .abutton {
             display: inline-block;

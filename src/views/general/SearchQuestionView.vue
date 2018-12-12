@@ -1,8 +1,10 @@
 <template>
     <div>
         <MCard>
-            <h2>過去問たち</h2>
+            <MCardTitle>過去問たち</MCardTitle>
             <MSearchForm />
+        </MCard>
+        <MCard>
             <MOldContestList />
         </MCard>
     </div>
@@ -11,9 +13,8 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component } from "vue-property-decorator"
-    import MSearchForm from "@/components/search/MSearchForm.vue"
-    import MOldContestList from "@/components/search/MOldContestList.vue"
-    import MCard from "@/components/MCard.vue"
+    import { MSearchForm, MOldContestList } from "@/components/search"
+    import { MCard, MCardTitle, MCardBody } from "@/components/card"
     import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action, Mutation } from "vuex-class"
     const namespace: string = "search_question_store"
@@ -23,6 +24,7 @@
             MSearchForm,
             MOldContestList,
             MCard,
+            MCardTitle,
         },
     })
     export default class SearchQuestionPage extends Vue {

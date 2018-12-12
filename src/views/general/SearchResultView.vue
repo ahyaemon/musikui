@@ -20,9 +20,9 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component } from "vue-property-decorator"
-    import MSearchForm from "@/components/search/MSearchForm.vue"
-    import MCard from "@/components/MCard.vue"
-    import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
+    import { MSearchForm } from "@/components/search"
+    import { MCard } from "@/components/card"
+    import { MMusikuiArticle } from "@/components/contest"
     import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action, Mutation } from "vuex-class"
     import MusikuiArticle from "@/domain/MusikuiArticle"

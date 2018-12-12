@@ -15,10 +15,8 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
-    import MCard from "@/components/MCard.vue"
-    import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
-    import MRespondentList from "@/components/contest/MRespondentList.vue"
-    import MJumpList from "@/components/contest/MJumpList.vue"
+    import { MCard } from "@/components/card"
+    import { MMusikuiArticle, MRespondentList, MJumpList } from "@/components/contest"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/domain/MusikuiArticle"

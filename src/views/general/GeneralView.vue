@@ -10,8 +10,7 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
-    import MNav from "@/components/layout/MNav.vue"
-    import MFooter from "@/components/layout/MFooter.vue"
+    import { MNav, MFooter } from "@/components/layout"
 
     @Component({
         components: {

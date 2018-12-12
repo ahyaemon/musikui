@@ -1,11 +1,10 @@
 <template>
     <div>
         <MCard class="top">
-            <h2>今週の問題</h2>
-                <MCardBody>
+            <MCardTitle>今週の問題</MCardTitle>
+            <MCardBody>
                 <p>{{ current_contest.get_date() }}</p>
                 <p>{{ current_contest.comment }}</p>
-
                 <div>
                     <a @click="switch_respondent_displayed">
                         <span v-if="respondent_displayed">▼</span>
@@ -37,11 +36,8 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
-    import MCard from "@/components/MCard.vue"
-    import MCardBody from "@/components/MCardBody.vue"
-    import MMusikuiArticle from "@/components/contest/MMusikuiArticle.vue"
-    import MRespondentList from "@/components/contest/MRespondentList.vue"
-    import MJumpList from "@/components/contest/MJumpList.vue"
+    import { MCard, MCardBody, MCardTitle } from "@/components/card"
+    import { MMusikuiArticle, MRespondentList, MJumpList } from "@/components/contest"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/domain/MusikuiArticle"
@@ -50,6 +46,7 @@
     @Component({
         components: {
             MCard,
+            MCardTitle,
             MCardBody,
             MMusikuiArticle,
             MRespondentList,
