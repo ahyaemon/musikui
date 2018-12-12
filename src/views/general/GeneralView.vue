@@ -1,6 +1,6 @@
 <template>
     <div id="index">
-        <MNav :links="links"/>
+        <MNav :links="links" title="虫食い算やろうぜ！！"/>
         <main>
             <router-view/>
         </main>

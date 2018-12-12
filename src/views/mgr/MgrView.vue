@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <MNav :links="links"/>
+    <div id="index">
+        <MNav :links="links" title="管理ページ"/>
         <main>
             <router-view/>
         </main>
@@ -10,8 +10,7 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
-    import MNav from "@/components/layout/MNav.vue"
-    import MFooter from "@/components/layout/MFooter.vue"
+    import { MNav, MFooter } from "@/components/layout"
 
     @Component({
         components: {
@@ -35,7 +34,13 @@
 </script>
 
 <style lang="scss" scoped>
-    main {
-        margin-top: 80px;
+    #index {
+        min-height: 100vh;
+        background-image: url("../..//assets/background.jpg");
+        background-repeat: repeat;
+
+        main {
+            padding-top: 80px;
+        }
     }
 </style>

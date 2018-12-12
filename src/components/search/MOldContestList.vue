@@ -17,7 +17,7 @@
     import Vue from "vue"
     import { Component } from "vue-property-decorator"
     import fetcher from "@/util/fetcher"
-    import { MCardSubtitle } from "@/components/card"
+    import { MCardSubtitle, MCardBody } from "@/components/card"
     import { OldContestInfo } from "@/store/search_question/types"
     import { Getter, Action } from "vuex-class"
     const namespace: string = "search_question_store"
@@ -25,6 +25,7 @@
     @Component({
         components: {
             MCardSubtitle,
+            MCardBody,
         },
     })
     export default class OldContestList extends Vue {

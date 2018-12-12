@@ -5,9 +5,9 @@ import mgrRouter from "./mgr"
 
 Vue.use(Router)
 
-export default new Router({
-    routes: [
-        generalRouter,
-        mgrRouter,
-    ],
-})
+const routes = [
+    mgrRouter,
+    generalRouter,
+]
+
+export default new Router({ routes })

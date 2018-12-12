@@ -4,7 +4,7 @@
         <div class="luxbar-menu luxbar-menu-left luxbar-menu-dark">
             <ul class="luxbar-navigation" @click="close_menu">
                 <li class="luxbar-header">
-                    <router-link to="/" class="luxbar-brand">虫食い算やろうぜ！！</router-link>
+                    <router-link to="/" class="luxbar-brand">{{ title }}</router-link>
                     <label class="luxbar-hamburger luxbar-hamburger-spin"
                     id="luxbar-hamburger" for="luxbar-checkbox"> <span></span> </label>
                 </li>
@@ -24,6 +24,7 @@
     @Component
     export default class MNav extends Vue {
 
+        @Prop() private title!: string
         @Prop() private links!: any[]
         private checked: boolean = false
 

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <!-- general と mgr の分岐-->
         <router-view/>
     </div>
