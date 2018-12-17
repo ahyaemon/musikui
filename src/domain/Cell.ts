@@ -1,9 +1,10 @@
 import { CellType } from "./CellType"
+import ValueCell from "./ValueCell"
 
 export default class Cell {
 
     constructor(
-        ct: CellType,
+        readonly ct: CellType,
     ) {}
 
 }

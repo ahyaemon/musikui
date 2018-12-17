@@ -26,7 +26,7 @@
     import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action, Mutation } from "vuex-class"
     import MusikuiArticle from "@/domain/MusikuiArticle"
-    const namespace: string = "search_result_store"
+    const namespace: string = "general_store/search_result_store"
 
     Component.registerHooks([
         "beforeRouteUpdate",

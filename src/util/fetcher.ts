@@ -6,6 +6,8 @@ interface FetchParams {
     params: any,
 }
 
+const base_url = "/api/web"
+
 export default class Fetcher {
 
     public static async get(fetch_params: FetchParams): Promise<any> {
@@ -13,7 +15,7 @@ export default class Fetcher {
         params.mapping = fetch_params.method
 
         let res
-        await axios.get("/api/web/" + fetch_params.controller, {
+        await axios.get(`${base_url}/${fetch_params.controller}`, {
             params,
         })
         .then((response) => {
@@ -34,7 +36,7 @@ export default class Fetcher {
         }
 
         let res
-        await axios.post("api/" + fetch_params.controller,
+        await axios.post(`${base_url}/${fetch_params.controller}`,
             search_params,
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -62,7 +64,7 @@ export default class Fetcher {
         }
 
         let res
-        await axios.post("api/" + fetch_params.controller,
+        await axios.post(`${base_url}/${fetch_params.controller}`,
             form_data,
             {
                 headers: {"Content-Type": "multipart/form-data" },

@@ -15,7 +15,7 @@ export default class MusikuiDate {
         this.date = new Date(y + "-" + m + "-" + d + "T00:00:00")
     }
 
-    public get_date(): string {
+    public format(): string {
         const yyyy = this.date.getFullYear().toString()
         // 0埋め用
         const mm = this.pad2keta(this.date.getMonth() + 1)
@@ -32,7 +32,7 @@ export default class MusikuiDate {
      * getDayの日曜日は 0
      */
     public next_sunday(): MusikuiDate {
-        const new_date: MusikuiDate = new MusikuiDate(this.get_date())
+        const new_date: MusikuiDate = new MusikuiDate(this.format())
         const day = this.date.getDay()
         const diff = 7 - day
         new_date.add_date(diff)

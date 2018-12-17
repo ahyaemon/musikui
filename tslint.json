@@ -18,6 +18,7 @@
     "semicolon": [true, "never"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-snake-case"],
     "no-empty": false,
-    "max-line-length": false
+    "max-line-length": false,
+    "prefer-for-of": false
   }
 }

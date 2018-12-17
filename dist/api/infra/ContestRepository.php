@@ -44,5 +44,49 @@
             return $musikuis_with_contest_info;
         }
 
+        public static function find_recent_contests($amount) {
+            $sql = ContestSql::find_recent_contests($amount);
+            $result = SqlExecuter::select($sql);
+            $contests = array_map(function($record) {
+                return [
+                    "id" => $record["id"],
+                    "date" => $record["date"]
+                ];
+            }, $result);
+            $current_contest_id = array_values(array_filter($result, function($record) {
+                return $record["is_current"] == "1";
+            }))[0]["id"];
+            $recent_contests = [
+                "contests" => $contests,
+                "current_contest_id" => $current_contest_id
+            ];
+            return $recent_contests;
+        }
+
+        public static function update_current_contest_id($contest_id) {
+            $sql = ContestSql::update_current_contest_id($contest_id);
+            SqlExecuter::update($sql);
+        }
+
+        /**
+         * コンテストを登録する
+         * @return 新規採番されたidを返す
+         */
+        public static function add_one($contest) {
+            $insert_sql = ContestSql::insert_one($contest);
+            SqlExecuter::insert($insert_sql);
+            $select_sql = ContestSql::select_id_one($contest);
+            $id = SqlExecuter::select_one($select_sql);
+            return $id["id"];
+        }
+
+        /**
+         * コンテスト-虫食い関連テーブルを登録する
+         */
+        public static function add_contest_musikuis($contest_musikuis) {
+            $insert_sql = ContestSql::insert_contest_musikui($contest_musikuis);
+            SqlExecuter::insert($insert_sql);
+        }
+
     }
 ?>

@@ -3,7 +3,7 @@
         <MCard class="top">
             <MCardTitle>今週の問題</MCardTitle>
             <MCardBody>
-                <p>{{ current_contest.get_date() }}</p>
+                <p>{{ current_contest.date.format() }}</p>
                 <p>{{ current_contest.comment }}</p>
                 <div>
                     <a @click="switch_respondent_displayed">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <p>次回は {{ current_contest.get_next_sunday() }} になります。</p>
+                <p>次回は {{ current_contest.date.next_sunday().format() }} になります。</p>
                 <p>それでは、問題をお楽しみください</p>
                 <hr>
                 <MJumpList :musikuis="current_contest.musikuis"/>
@@ -41,7 +41,7 @@
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/domain/MusikuiArticle"
-    const namespace = "new_contest_store"
+    const namespace = "general_store/new_contest_store"
 
     @Component({
         components: {

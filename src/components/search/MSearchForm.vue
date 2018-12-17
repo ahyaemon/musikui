@@ -62,7 +62,7 @@
     import { MCardBody, MCardSubtitle } from "@/components/card"
     import SearchCondition from "@/domain/SearchCondition"
     import { Getter, Action } from "vuex-class"
-    const namespace: string = "search_question_store"
+    const namespace: string = "general_store/search_question_store"
 
     @Component({
         components: {

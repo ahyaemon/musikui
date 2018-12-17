@@ -1,7 +1,7 @@
 import { ActionTree } from "vuex"
 import { SearchQuestonState } from "./types"
-import { RootState } from "../types"
-import fetcher from "../../util/fetcher"
+import { RootState } from "@/store/types"
+import fetcher from "@/util/fetcher"
 import SearchCondition from "@/domain/SearchCondition"
 import SearchConditionFactory from "@/domain/factory/SearchConditionFactory"
 

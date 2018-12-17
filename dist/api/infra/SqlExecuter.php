@@ -17,7 +17,16 @@
             }
 
             while ($record = $result->fetchArray()){
-                array_push($records, $record);
+                /**
+                 * indexがキーになっている要素は削除
+                 */
+                $record_without_index = [];
+                foreach ($record as $key => $value) {
+                    if (preg_match("/^\d+$/", $key) == 0) {
+                        $record_without_index[$key] = $value;
+                    }
+                }
+                array_push($records, $record_without_index);
             }
             return $records;
         }

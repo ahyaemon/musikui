@@ -1,7 +1,7 @@
 <template>
     <div>
         <MCard class="top">
-            <h2>{{ contest.get_date() }}の問題</h2>
+            <h2>{{ contest.date.format() }}の問題</h2>
             <p>{{ contest.comment }}</p>
             <hr>
             <MJumpList :musikuis="contest.musikuis"/>
@@ -20,7 +20,7 @@
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/domain/MusikuiArticle"
-    const namespace = "old_contest_store"
+    const namespace = "general_store/old_contest_store"
 
     @Component({
         components: {

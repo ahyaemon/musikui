@@ -43,4 +43,8 @@
     .luxbar-brand {
         padding: 18px 0px 18px 10px;
     }
+
+    .luxbar-menu-dark {
+        background-color: rgb(37, 37, 37);
+    }
 </style>

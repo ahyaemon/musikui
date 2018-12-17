@@ -1,14 +1,14 @@
 import { Module } from "vuex"
-import { SearchQuestonState } from "./types"
-import { RootState } from "../types"
+import { SearchResultState } from "./types"
+import { RootState } from "@/store/types"
 import { getters } from "./getters"
 import { mutations } from "./mutations"
 import { actions } from "./actions"
-import Contest from "../../domain/Contest"
-import MusikuiDate from "../../value_object/MusikuiDate"
+import Contest from "@/domain/Contest"
+import MusikuiDate from "@/value_object/MusikuiDate"
 
-export const state: SearchQuestonState = {
-    search_condition : {
+export const state: SearchResultState = {
+    searched_condition : {
         min_level: 1,
         max_level: 10,
         plus_selected: true,
@@ -17,12 +17,10 @@ export const state: SearchQuestonState = {
         min_col: 1,
         max_col: 10,
     },
-    max_col: 10,
-    max_level: 10,
-    old_contest_infos: [],
+    musikuis_with_contest_info: [],
 }
 
-export const search_question_store: Module<SearchQuestonState, RootState> = {
+export const search_result_store: Module<SearchResultState, RootState> = {
     namespaced: true,
     state,
     getters,

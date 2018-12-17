@@ -1,7 +1,7 @@
 import { GetterTree } from "vuex"
 import { SearchQuestonState, OldContestInfo } from "./types"
 import SearchCondition from "@/domain/SearchCondition"
-import { RootState } from "../types"
+import { RootState } from "@/store/types"
 import Contest from "@/domain/Contest"
 import Musikui from "@/domain/Musikui"
 

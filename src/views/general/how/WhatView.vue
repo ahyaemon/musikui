@@ -160,7 +160,7 @@
     import { Component } from "vue-property-decorator"
     import { MMusikuiTable } from "@/components/contest"
     import { Action, Getter } from "vuex-class"
-    const namespace: string = "what"
+    const namespace: string = "general_store/what"
 
     @Component({
         components: {

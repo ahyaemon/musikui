@@ -1,7 +1,7 @@
 import { ActionTree } from "vuex"
 import { NewContestState } from "./types"
-import { RootState } from "../types"
-import fetcher from "../../util/fetcher"
+import { RootState } from "@/store/types"
+import fetcher from "@/util/fetcher"
 
 export const actions: ActionTree<NewContestState, RootState> = {
 

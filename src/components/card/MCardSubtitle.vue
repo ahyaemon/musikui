@@ -16,6 +16,7 @@
         font-weight:normal;
         padding: 4px 0px 4px 10px;
         color: white;
-        background: linear-gradient(90deg, #306138, white);
+        background-color: #4f6453;
+        // background: linear-gradient(90deg, #306138, white);
     }
 </style>

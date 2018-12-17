@@ -110,5 +110,72 @@
             return $sql;
         }
 
+        public static function find_recent_contests($amount) {
+            $sql = "
+            SELECT
+                contest.id,
+                contest.date,
+                current.contest_id = contest.id as is_current
+            FROM
+                contest
+                LEFT OUTER JOIN
+                    current
+                    ON
+                        contest.id = current.contest_id
+            ORDER BY
+                contest.date DESC
+            LIMIT
+                ${amount}
+            ";
+            return $sql;
+        }
+
+        public static function update_current_contest_id($contest_id) {
+            $sql = "UPDATE current SET contest_id = '$contest_id'";
+            return $sql;
+        }
+
+        public static function insert_one($contest) {
+            $date = $contest["date"];
+            $comment = $contest["comment"];
+            return "
+                INSERT INTO contest
+                    (date, comment)
+                VALUES
+                    ('${date}', '${comment}')
+            ";
+        }
+
+        public static function select_id_one($contest) {
+            $date = $contest["date"];
+            return "
+                SELECT
+                    id
+                FROM
+                    contest
+                WHERE
+                    date = '${date}'
+            ";
+        }
+
+        public static function insert_contest_musikui($contest_musikuis) {
+            $values = array_map(function($contest_musikui) {
+                $sql = "(";
+                $sql .= "'".$contest_musikui["contest_id"]."',\n";
+                $sql .= "'".$contest_musikui["musikui_id"]."',\n";
+                $sql .= "'".$contest_musikui["question_number"]."'\n";
+                $sql .= ")";
+                return $sql;
+            }, $contest_musikuis);
+            $joinned_values = implode(",\n", $values);
+
+            return "
+                INSERT INTO contest_musikui
+                    (contest_id, musikui_id, question_number)
+                VALUES
+                    ${joinned_values}
+            ";
+        }
+
     }
 ?>
