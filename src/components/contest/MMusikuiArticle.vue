@@ -1,6 +1,3 @@
-<!--
-    FIXME slotで過去問の日付をいれるのはどうかと思う
--->
 <template>
     <article class="musikui-article m-card">
         <div class="header">
@@ -20,6 +17,7 @@
 
         <div class="answer">
             <MAnswerForm :formula="article.musikui.formula" :mark="article.musikui.mark" :musikui_id="article.musikui.id"/>
+            <MCommentForm />
         </div>
 
         <div class="respondent">
@@ -35,15 +33,15 @@
     import MMusikuiTable from "./MMusikuiTable.vue"
     import MAnswerForm from "./MAnswerForm.vue"
     import MRespondentList from "./MRespondentList.vue"
-    import { Getter, Action } from "vuex-class"
+    import MCommentForm from "./MCommentForm.vue"
     import MusikuiArticle from "@/domain/MusikuiArticle"
-    const namespace = "new_contest_store"
 
     @Component({
         components: {
             MMusikuiTable,
             MAnswerForm,
             MRespondentList,
+            MCommentForm,
         },
     })
     export default class MMusikuiArticle extends Vue {

@@ -88,5 +88,13 @@
             SqlExecuter::insert($insert_sql);
         }
 
+        public static function find_answer($musikui_id) {
+            $sql = ContestSql::select_formula_by_musikui_id($musikui_id);
+            $result = SqlExecuter::select_one($sql);
+            $formula = json_decode($result["formula"]);
+            return $formula;
+
+        }
+
     }
 ?>

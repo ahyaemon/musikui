@@ -177,5 +177,16 @@
             ";
         }
 
+        public static function select_formula_by_musikui_id($musikui_id) {
+            return "
+                SELECT
+                    formula
+                FROM
+                    musikui
+                WHERE
+                    id = '${musikui_id}'
+            ";
+        }
+
     }
 ?>

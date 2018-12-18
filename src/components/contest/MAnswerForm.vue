@@ -2,26 +2,16 @@
     <div>
         <div class="answer-form">
             <p>{{ answer_error_message }}</p>
-            <span v-for="i in left_term_amount" :key="i">
+            <span v-for="i in formula.lefts.length" :key="i">
                 <input type="text"
-                        :value="get_left_answer(i - 1)"
+                        :value="left_answers[i-1]"
                         v-on:input="set_left_answer(i - 1, $event)"
                         :disabled="is_correct"/>
-                <span v-if="i < left_term_amount">{{ _mark }}</span>
+                <span v-if="i < formula.lefts.length">{{ _mark }}</span>
             </span>
             <span>=</span>
             <input type="text" v-model="right_answer" :disabled="is_correct" />
-            <button type="button" class="bt red" @click="answer_clicked" :disabled="is_correct">回答</button>
-        </div>
-
-        <div class="comment-form" v-if="is_correct">
-            <p>正解！！{{ answer_datetime }}</p>
-            <p>よかったらコメントをば</p>
-            <p> {{ comment_error_message }}</p>
-            <p v-if="commented">コメントを登録しました。</p>
-            <p>名前：<input type="text" v-model="name" :disabled="commented"/></p>
-            <p>コメント：<input type="text" v-model="comment" :disabled="commented"/></p>
-            <button type="button" class="bt red" @click="comment_clicked">送信</button>
+            <MPinkButton @click.native="answer_clicked" :disabled="is_correct">回答</MPinkButton>
         </div>
     </div>
 </template>
@@ -29,33 +19,29 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component, Prop } from "vue-property-decorator"
+    import { MPinkButton } from "@/components/button"
     import fetcher from "@/util/fetcher"
     import Formula from "@/domain/Formula"
 
-    @Component
+    @Component({
+        components: {
+            MPinkButton,
+        },
+    })
     export default class MAnswerForm extends Vue {
 
         @Prop() private formula!: Formula
         @Prop() private mark!: string
         @Prop() private musikui_id!: number
 
-        private left_answers: string[] = []
-        private right_answer: string = ""
+        private left_answers: number[] = [712, 3]
+        private right_answer: number = 2136
         private is_correct: boolean = false
         private answer_error_message: string = ""
         private answer_datetime: string = ""
-        private comment_error_message: string = ""
-        private commented: boolean = false
 
         private name: string = ""
         private comment: string = ""
-
-        private get left_term_amount(): number {
-            if (!this.formula) {
-                return 0
-            }
-            return this.formula.lefts.length
-        }
 
         private get _mark(): string {
             if (this.mark === "plus") {
@@ -82,43 +68,45 @@
         }
 
         private answer_clicked() {
-            fetcher.post({
-                controller: "src/web/AnswerController.php",
-                method: "check_answer",
+            fetcher.get({
+                controller: "NewContestController.php",
+                method: "is_correct_answer",
                 params: {
-                    lefts: JSON.stringify(this.left_answers),
-                    right: this.right_answer,
+                    formula: JSON.stringify({
+                        lefts: this.left_answers,
+                        right: this.right_answer,
+                    }),
                     musikui_id: this.musikui_id,
                 },
             }).then((response) => {
-                if (response.data.errors) {
-                    this.answer_error_message = response.data.errors[0].message
+                if (response.errors) {
+                    this.answer_error_message = response.errors[0].message
                     return
                 }
                 this.answer_error_message = ""
                 this.is_correct = true
-                this.answer_datetime = response.data.answer_datetime
+                this.answer_datetime = response.answer_datetime
             })
         }
 
-        private comment_clicked() {
-            fetcher.post({
-                controller: "src/web/AnswerController.php",
-                method: "add_comment",
-                params: {
-                    name: this.name,
-                    comment: this.comment,
-                    musikui_id: this.musikui_id,
-                },
-            }).then((response) => {
-                if (response.data.errors) {
-                    this.comment_error_message = response.data.errors[0].message
-                    return
-                }
-                this.comment_error_message = ""
-                this.commented = true
-            })
-        }
+        // private comment_clicked() {
+        //     fetcher.post({
+        //         controller: "src/web/AnswerController.php",
+        //         method: "add_comment",
+        //         params: {
+        //             name: this.name,
+        //             comment: this.comment,
+        //             musikui_id: this.musikui_id,
+        //         },
+        //     }).then((response) => {
+        //         if (response.data.errors) {
+        //             this.comment_error_message = response.data.errors[0].message
+        //             return
+        //         }
+        //         this.comment_error_message = ""
+        //         this.commented = true
+        //     })
+        // }
 
     }
 </script>

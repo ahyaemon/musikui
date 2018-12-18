@@ -21,6 +21,9 @@ describe("Musikui.ts", () => {
         expect(m.comment).toBe("11月11日です。<br>ついかぎょう")
         expect(m.nrow).toBe(5)
         expect(m.ncol).toBe(4)
+
+        expect(m.formula.lefts).toEqual([10, 999, 100])
+        expect(m.formula.right).toBe(1009)
     });
 
     it("parse multiple mark musikui text", () => {
@@ -38,6 +41,9 @@ describe("Musikui.ts", () => {
         expect(m.comment).toBe("11月11日です。")
         expect(m.nrow).toBe(4)
         expect(m.ncol).toBe(4)
+
+        expect(m.formula.lefts).toEqual([119, 9])
+        expect(m.formula.right).toBe(1071)
     });
 
     it("parse divide mark musikui text", () => {
@@ -55,6 +61,9 @@ describe("Musikui.ts", () => {
         expect(m.comment).toBe("「キ」です。")
         expect(m.nrow).toBe(15)
         expect(m.ncol).toBe(18)
+
+        expect(m.formula.lefts).toEqual([16046714453, 842303])
+        expect(m.formula.right).toBe(19051)
     });
 
 })

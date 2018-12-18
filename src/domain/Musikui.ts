@@ -16,12 +16,13 @@ export default class Musikui {
         const hissan_lines = Parser.get_hissan_lines(lines)
         const comment_lines = Parser.get_comment_lines(lines)
         const hissan_both = Hissan.from_lines(hissan_lines)
+        const mark = mark_from_hissan(hissan_both.answer)
         return new Musikui(
             0,
             level,
             comment_lines.join("<br>"),
-            mark_from_hissan(hissan_both.answer),
-            Formula.from_hissan(hissan_both.answer),
+            mark,
+            Formula.from_hissan(hissan_both.answer, mark),
             hissan_both.question,
             hissan_both.answer,
             hissan_both.answer.rows.length,

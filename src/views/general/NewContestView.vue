@@ -29,7 +29,7 @@
         </MCard>
 
         <MCard v-for="(article, iarticle) in musikui_articles" :key="iarticle" :id="'a' + (iarticle + 1)">
-            <MMusikuiArticle :article="article"/>
+            <MMusikuiArticle :article="article" />
         </MCard>
     </div>
 </template>
