@@ -15,7 +15,8 @@
     .m-card-title {
         padding: 4px 0px 4px 10px;
         color: white;
-        background-color: #4e3b3b;
+        background: linear-gradient(90deg, #5a3131, white);
+        // background-color: #915d5d;
         // background: linear-gradient(90deg, #5a3131, white);
     }
 </style>

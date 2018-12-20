@@ -16,8 +16,19 @@
         </div>
 
         <div class="answer">
-            <MAnswerForm :formula="article.musikui.formula" :mark="article.musikui.mark" :musikui_id="article.musikui.id"/>
-            <MCommentForm />
+            <MAnswerForm
+                    :formula="article.musikui.formula"
+                    :mark="article.musikui.mark"
+                    :musikui_id="article.musikui.id"
+                    @correct_answer_submitted="correct_answer_submitted"
+            />
+        </div>
+
+        <div v-if="submitted_correct_answer">
+            <MCommentForm
+                    :answer_datetime="answer_datetime"
+                    :musikui_id="article.musikui.id"
+            />
         </div>
 
         <div class="respondent">
@@ -47,6 +58,13 @@
     export default class MMusikuiArticle extends Vue {
 
         @Prop() private article!: MusikuiArticle
+        private submitted_correct_answer: boolean = false
+        private answer_datetime: string = ""
+
+        private correct_answer_submitted(answer_datetime: string) {
+            this.answer_datetime = answer_datetime
+            this.submitted_correct_answer = true
+        }
 
     }
 </script>

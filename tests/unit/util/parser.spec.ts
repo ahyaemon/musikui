@@ -25,7 +25,7 @@ describe("Parser.ts", () => {
         expect(Parser.to_binary("ab de")).toBe("11011")
         expect(Parser.to_binary("abcde ")).toBe("111110")
         expect(Parser.to_binary("ab de ")).toBe("110110")
-        expect(Parser.to_binary("     １０         １０")).toBe("000001100000000011");
+        expect(Parser.to_binary("     １０         １０")).toBe("000001100000000011")
     })
 
     it("creates boolean array", () => {

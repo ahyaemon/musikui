@@ -35,7 +35,7 @@ export default class MusikuiTemplate {
 11月11日です。
 `
 
-public text_divide = `
+    public text_divide = `
 レベル 10
 
 ＜問題＞　　　　　　　　　　　　　　　　　　　　　＜答え＞

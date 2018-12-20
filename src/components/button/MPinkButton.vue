@@ -21,7 +21,7 @@
         padding: 10px 40px 10px 40px;
         margin: 10px;
         border-radius: 4px;
-        background-color: rgb(248, 109, 109);
+        background-color: rgb(245, 127, 127);
     }
 
     .disabled {

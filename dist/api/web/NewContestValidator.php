@@ -39,6 +39,35 @@
             return $errors;
         }
 
+        public static function respondent_validation($name, $session, $key) {
+            $errors = [];
+
+            if($name == "") {
+                array_push($errors, [ "field" => "name", "message" => "名前を入力していただきたい"]);
+                return $errors;
+            }
+
+            if(!isset($_SESSION[$key])) {
+                array_push($errors, [ "field" => "name", "message" => "本当に問題解いた？"]);
+                return $errors;
+            }
+
+            if(!isset($_SESSION[$key]["answer_datetime"])) {
+                array_push($errors, [ "field" => "name", "message" => "本当に問題解いた？"]);
+                return $errors;
+            }
+
+            if(isset($_SESSION[$key]["commented"])) {
+                $commented = $_SESSION[$key]["commented"];
+                if($commented) {
+                    array_push($errors, [ "field" => "name", "message" => "既にコメント済み？"]);
+                    return $errors;
+                }
+            }
+
+            return $errors;
+        }
+
     }
 
 ?>

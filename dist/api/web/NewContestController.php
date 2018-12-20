@@ -2,6 +2,7 @@
 
     require_once(dirname(__FILE__)."/../Path.php");
     require_once(Path::infra()."/ContestRepository.php");
+    require_once(Path::infra()."/RespondentRepository.php");
     require_once(Path::web()."/NewContestValidator.php");
 
     class NewContestController {
@@ -47,9 +48,10 @@
             $commented = false;
             if (isset($_SESSION[$key])) {
                 if (isset($_SESSION[$key]["commented"])){
-                    $commented = true;
+                    $commented = $_SESSION[$key]["commented"];
                 }
             }
+
             $_SESSION[$key] = [
                 "answer_datetime" => $answer_datetime,
                 "commented" => $commented
@@ -59,7 +61,36 @@
                 "answer_datetime" => $answer_datetime
             ]);
         }
+
+        public static function add_respondent($name, $comment, $musikui_id) {
+            session_start();
+            $key = "m-".$musikui_id;
+
+            // バリデーション
+            $validation_errors = NewContestValidator::respondent_validation($name, $_SESSION, $key);
+            if (count($validation_errors) > 0) {
+                return json_encode(["errors" => $validation_errors]);
+            }
+
+            // respondent登録
+            $answer_datetime = $_SESSION[$key]["answer_datetime"];
+            $respondent = [
+                "musikui_id" => $musikui_id,
+                "name" => $name,
+                "comment" => $comment,
+                "answer_datetime" => $answer_datetime
+            ];
+            RespondentRepository::add_one($respondent);
+
+            // 2重登録防止用に、commented を trueにする
+            $_SESSION[$key] = [
+                "answer_datetime" => $answer_datetime,
+                "commented" => true
+            ];
+            return json_encode(true);
+        }
     }
+
     // GET
     if (count($_GET) > 0){
         $mapping = $_GET["mapping"];
@@ -67,18 +98,23 @@
             $json = NewContestController::get();
             echo $json;
         }
-        else if($mapping == "is_correct_answer") {
+        else if ($mapping == "is_correct_answer") {
             $musikui_id = $_GET["musikui_id"];
             $formula = json_decode($_GET["formula"]);
             $json = NewContestController::is_correct_answer($musikui_id, $formula);
             echo $json;
         }
-
     }
-
     // POST
     if (count($_POST) > 0){
         $mapping = $_POST["mapping"];
+        if ($mapping == "add_respondent") {
+            $name = $_POST["name"];
+            $comment = $_POST["comment"];
+            $musikui_id = $_POST["musikui_id"];
+            $json = NewContestController::add_respondent($name, $comment, $musikui_id);
+            echo $json;
+        }
     }
 
 ?>

@@ -3,14 +3,15 @@
         <div class="answer-form">
             <p>{{ answer_error_message }}</p>
             <span v-for="i in formula.lefts.length" :key="i">
-                <input type="text"
+                <input type="number"
+                        class="input-number"
                         :value="left_answers[i-1]"
                         v-on:input="set_left_answer(i - 1, $event)"
                         :disabled="is_correct"/>
                 <span v-if="i < formula.lefts.length">{{ _mark }}</span>
             </span>
             <span>=</span>
-            <input type="text" v-model="right_answer" :disabled="is_correct" />
+            <input class="input-number" type="number" v-model="right_answer" :disabled="is_correct" />
             <MPinkButton @click.native="answer_clicked" :disabled="is_correct">回答</MPinkButton>
         </div>
     </div>
@@ -18,9 +19,9 @@
 
 <script lang="ts">
     import Vue from "vue"
-    import { Component, Prop } from "vue-property-decorator"
+    import { Component, Prop, Emit } from "vue-property-decorator"
     import { MPinkButton } from "@/components/button"
-    import fetcher from "@/util/fetcher"
+    import Fetcher from "@/util/fetcher"
     import Formula from "@/domain/Formula"
 
     @Component({
@@ -68,8 +69,8 @@
         }
 
         private answer_clicked() {
-            fetcher.get({
-                controller: "NewContestController.php",
+            Fetcher.get({
+                controller: "NewContestController",
                 method: "is_correct_answer",
                 params: {
                     formula: JSON.stringify({
@@ -86,27 +87,20 @@
                 this.answer_error_message = ""
                 this.is_correct = true
                 this.answer_datetime = response.answer_datetime
+                this.correct_answer_submitted()
             })
         }
 
-        // private comment_clicked() {
-        //     fetcher.post({
-        //         controller: "src/web/AnswerController.php",
-        //         method: "add_comment",
-        //         params: {
-        //             name: this.name,
-        //             comment: this.comment,
-        //             musikui_id: this.musikui_id,
-        //         },
-        //     }).then((response) => {
-        //         if (response.data.errors) {
-        //             this.comment_error_message = response.data.errors[0].message
-        //             return
-        //         }
-        //         this.comment_error_message = ""
-        //         this.commented = true
-        //     })
-        // }
+        @Emit("correct_answer_submitted")
+        private correct_answer_submitted() {
+            return this.answer_datetime
+        }
 
     }
 </script>
+
+<style>
+    .input-number {
+        text-align: right;
+    }
+</style>
