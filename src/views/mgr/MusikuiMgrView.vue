@@ -12,15 +12,11 @@
 
             <MCardSubtitle>Update</MCardSubtitle>
             <MCardBody>
-                <div class="paging">
-                    <button
-                            v-for="ipage in page_amount"
-                            :key="ipage"
-                            :class="{current: ipage==paging.current_page_number}"
-                            v-text="ipage"
-                            @click="change_page_clicked(ipage)"
-                    />
-                </div>
+                <MPaging
+                        :current_page_number="paging.current_page_number"
+                        :page_amount="page_amount"
+                        @change_page_clicked="change_page_clicked"
+                />
                 <table class="mgr-table">
                     <thead>
                         <tr>
@@ -44,6 +40,7 @@
     import { Component, Vue } from "vue-property-decorator"
     import { MCard, MCardTitle, MCardSubtitle, MCardBody } from "@/components/card"
     import { MPinkButton } from "@/components/button"
+    import { MPaging } from "@/components/paging"
     import { Getter, Action, Mutation } from "vuex-class"
     import Musikui from "@/domain/Musikui"
     import Paging from "@/value_object/Paging"
@@ -56,6 +53,7 @@
             MCardSubtitle,
             MCardBody,
             MPinkButton,
+            MPaging,
         },
     })
 
@@ -105,22 +103,4 @@
             padding: 10px;
         }
     }
-
-    .paging {
-        font-size: 120%;
-        color: grey;
-
-        button {
-            border: none;
-            background-color: rgba(0, 0, 0, 0);
-            margin: 0px 4px 0px 4px;
-        }
-
-        .current {
-            font-weight: bold;
-            font-size: 120%;
-            color: black;
-        }
-    }
-
 </style>
