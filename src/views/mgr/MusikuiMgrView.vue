@@ -17,20 +17,11 @@
                         :page_amount="page_amount"
                         @change_page_clicked="change_page_clicked"
                 />
-                <table class="mgr-table">
-                    <thead>
-                        <tr>
-                            <th v-for="(colname, icolname) in colnames" :key="icolname" v-text="colname"/>
-                            <th>edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(musikui, imusikui) in musikuis" :key="imusikui">
-                            <td v-for="(colname, icolname) in colnames" :key="icolname" v-text="musikui[colname]"/>
-                            <td><MPinkButton>Go</MPinkButton></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <MMgrTable
+                        :colnames="colnames"
+                        :contents="musikuis"
+                        @edit_clicked="edit_clicked"
+                />
             </MCardBody>
         </MCard>
     </div>
@@ -41,6 +32,7 @@
     import { MCard, MCardTitle, MCardSubtitle, MCardBody } from "@/components/card"
     import { MPinkButton } from "@/components/button"
     import { MPaging } from "@/components/paging"
+    import { MMgrTable } from "@/components/mgr_table"
     import { Getter, Action, Mutation } from "vuex-class"
     import Musikui from "@/domain/Musikui"
     import Paging from "@/value_object/Paging"
@@ -54,6 +46,7 @@
             MCardBody,
             MPinkButton,
             MPaging,
+            MMgrTable,
         },
     })
 
@@ -86,21 +79,12 @@
             this.set_page_number(page_number)
         }
 
+        private edit_clicked(musikui_id: number): void {
+            this.$router.push(`/mgr/musikui/edit/${musikui_id}`)
+        }
+
     }
 </script>
 
 <style lang="scss" scoped>
-    .mgr-table {
-        width: 100%;
-        th {
-            padding: 10px;
-            background-color: rgb(107, 138, 116);
-            color: white;
-            border: 1px solid white;
-        }
-        td {
-            border: 1px solid grey;
-            padding: 10px;
-        }
-    }
 </style>
