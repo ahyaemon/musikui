@@ -12,6 +12,10 @@
         private static function to_respondent($result) {
             $all_respondents = [];
             foreach($result as $record) {
+                if ($record["respondent_id"] == null) {
+                    continue;
+                }
+
                 $key = $record["musikui_id"];
                 $key2 = $record["respondent_id"];
                 $value = [
@@ -50,7 +54,12 @@
             // 回答はすべての項を 0 にしておく（答えがクライアントに渡らないように）
             $formula = ContestMapper::mask_formula($target_record);
             $musikui_id = $target_record["musikui_id"];
-            $respondents = $all_respondents[$musikui_id];
+            // respondentは存在しない可能性がある
+            if (isset($all_respondents[$musikui_id])) {
+                $respondents = $all_respondents[$musikui_id];
+            } else {
+                $respondents = [];
+            }
             $musikui = [
                 "id" => $musikui_id,
                 "level" => $target_record["level"],
