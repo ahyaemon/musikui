@@ -1,6 +1,6 @@
-import Hissan from "@/domain/Hissan"
-import { CellType } from "@/domain/CellType"
-import ValueCell from "@/domain/ValueCell"
+import Hissan from "@/value_object/Hissan"
+import { CellType } from "@/value_object/CellType"
+import ValueCell from "@/value_object/ValueCell"
 
 describe("hissan.ts", () => {
     it("can parse plus", () => {

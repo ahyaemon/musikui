@@ -1,4 +1,4 @@
-import SearchCondition from "@/domain/SearchCondition"
+import SearchCondition from "@/value_object/SearchCondition"
 import Contest from "@/domain/Contest"
 import MusikuiDate from "@/value_object/MusikuiDate"
 import Musikui from "@/domain/Musikui"

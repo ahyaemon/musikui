@@ -2,8 +2,8 @@ import { ActionTree } from "vuex"
 import { SearchQuestonState } from "./types"
 import { RootState } from "@/store/types"
 import fetcher from "@/util/fetcher"
-import SearchCondition from "@/domain/SearchCondition"
-import SearchConditionFactory from "@/domain/factory/SearchConditionFactory"
+import SearchCondition from "@/value_object/SearchCondition"
+import SearchConditionFactory from "@/value_object/factory/SearchConditionFactory"
 
 export const actions: ActionTree<SearchQuestonState, RootState> = {
 

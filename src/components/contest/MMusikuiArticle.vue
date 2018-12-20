@@ -45,7 +45,7 @@
     import MAnswerForm from "./MAnswerForm.vue"
     import MRespondentList from "./MRespondentList.vue"
     import MCommentForm from "./MCommentForm.vue"
-    import MusikuiArticle from "@/domain/MusikuiArticle"
+    import MusikuiArticle from "@/value_object/MusikuiArticle"
 
     @Component({
         components: {

@@ -49,7 +49,7 @@
                     </select>
                 </div>
                 <div>
-                    <button type="button" class="bt red" @click="search">検索</button>
+                    <MPinkButton @click.native="search">検索</MPinkButton>
                 </div>
             </form>
         </MCardBody>
@@ -60,7 +60,8 @@
     import Vue from "vue"
     import { Component, Emit } from "vue-property-decorator"
     import { MCardBody, MCardSubtitle } from "@/components/card"
-    import SearchCondition from "@/domain/SearchCondition"
+    import { MPinkButton } from "@/components/button"
+    import SearchCondition from "@/value_object/SearchCondition"
     import { Getter, Action } from "vuex-class"
     const namespace: string = "general_store/search_question_store"
 
@@ -68,6 +69,7 @@
         components: {
             MCardSubtitle,
             MCardBody,
+            MPinkButton,
         },
     })
     export default class SearchForm extends Vue {

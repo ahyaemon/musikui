@@ -4,6 +4,12 @@
     require_once(Path::infra()."/MusikuiSql.php");
     class MusikuiRepository {
 
+        public static function find_all() {
+            $sql = MusikuiSql::find_all();
+            $result = SqlExecuter::select($sql);
+            return $result;
+        }
+
         /**
          * 最大レベルと最大列数から、musikuiを検索する
          */

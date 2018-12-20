@@ -1,8 +1,8 @@
-import Formula from "./Formula"
-import Hissan from "./Hissan"
+import Formula from "@/value_object/Formula"
+import Hissan from "@/value_object/Hissan"
 import Respondent from "./Respondent"
-import { Mark, from_hissan as mark_from_hissan } from "./Mark"
-import { Difficulty } from "@/domain/Difficulty"
+import { Mark, from_hissan as mark_from_hissan } from "@/value_object/Mark"
+import { Difficulty } from "@/value_object/Difficulty"
 import Parser from "@/util/parser"
 
 export default class Musikui {

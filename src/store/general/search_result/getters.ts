@@ -1,9 +1,9 @@
 import { GetterTree } from "vuex"
 import { SearchResultState, MusikuiWithContestInfo } from "./types"
-import SearchCondition from "@/domain/SearchCondition"
+import SearchCondition from "@/value_object/SearchCondition"
 import { RootState } from "@/store/types"
 import Contest from "@/domain/Contest"
-import MusikuiArticle from "@/domain/MusikuiArticle"
+import MusikuiArticle from "@/value_object/MusikuiArticle"
 
 export const getters: GetterTree<SearchResultState, RootState> = {
 

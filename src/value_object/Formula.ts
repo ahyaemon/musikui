@@ -1,8 +1,8 @@
 import Hissan from "./Hissan"
-import { Mark } from "@/domain/Mark"
-import Cell from "@/domain/Cell"
-import { CellType } from "@/domain/CellType"
-import ValueCell from "@/domain/ValueCell"
+import { Mark } from "@/value_object/Mark"
+import Cell from "@/value_object/Cell"
+import { CellType } from "@/value_object/CellType"
+import ValueCell from "@/value_object/ValueCell"
 
 export default class Formula {
 

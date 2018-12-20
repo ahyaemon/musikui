@@ -1,6 +1,6 @@
 import { MutationTree } from "vuex"
 import { SearchQuestonState, OldContestInfo } from "./types"
-import SearchCondition from "@/domain/SearchCondition"
+import SearchCondition from "@/value_object/SearchCondition"
 
 export const mutations: MutationTree<SearchQuestonState> = {
 

@@ -1,5 +1,5 @@
 import Hissan from "./Hissan"
-import { CellType, to_cell_char } from "@/domain/CellType"
+import { CellType, to_cell_char } from "@/value_object/CellType"
 
 export enum Mark {
     Plus = "plus",

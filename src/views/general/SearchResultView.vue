@@ -23,9 +23,9 @@
     import { MSearchForm } from "@/components/search"
     import { MCard } from "@/components/card"
     import { MMusikuiArticle } from "@/components/contest"
-    import SearchCondition from "@/domain/SearchCondition"
+    import SearchCondition from "@/value_object/SearchCondition"
     import { Getter, Action, Mutation } from "vuex-class"
-    import MusikuiArticle from "@/domain/MusikuiArticle"
+    import MusikuiArticle from "@/value_object/MusikuiArticle"
     const namespace: string = "general_store/search_result_store"
 
     Component.registerHooks([

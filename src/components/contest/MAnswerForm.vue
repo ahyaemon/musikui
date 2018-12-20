@@ -22,7 +22,7 @@
     import { Component, Prop, Emit } from "vue-property-decorator"
     import { MPinkButton } from "@/components/button"
     import Fetcher from "@/util/fetcher"
-    import Formula from "@/domain/Formula"
+    import Formula from "@/value_object/Formula"
 
     @Component({
         components: {

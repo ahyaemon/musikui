@@ -1,6 +1,6 @@
 import { MutationTree } from "vuex"
 import { SearchResultState } from "./types"
-import SearchCondition from "@/domain/SearchCondition"
+import SearchCondition from "@/value_object/SearchCondition"
 import Musikui from "@/domain/Musikui"
 import ContestFactory from "@/domain/factory/ContestFactory"
 import MusikuiDate from "@/value_object/MusikuiDate"

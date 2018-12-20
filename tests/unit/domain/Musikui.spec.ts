@@ -1,5 +1,5 @@
 import Musikui from "@/domain/Musikui"
-import { CellType } from "@/domain/CellType"
+import { CellType } from "@/value_object/CellType"
 import MusikuiTemplate from "../../MusikuiTemplate"
 
 describe("Musikui.ts", () => {

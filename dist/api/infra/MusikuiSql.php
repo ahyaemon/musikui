@@ -2,13 +2,24 @@
 
     class MusikuiSql {
 
+        public static function find_all() {
+            return "
+                SELECT
+                    *
+                FROM
+                    musikui
+                ORDER BY
+                    id DESC
+            ";
+        }
+
         public static function find_max_level_and_col() {
             return "
-            SELECT
-                MAX(level) as max_level,
-                MAX(ncol) as max_col
-            FROM
-                musikui
+                SELECT
+                    MAX(level) as max_level,
+                    MAX(ncol) as max_col
+                FROM
+                    musikui
             ";
         }
 

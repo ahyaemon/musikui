@@ -19,7 +19,7 @@
     import { MMusikuiArticle, MRespondentList, MJumpList } from "@/components/contest"
     import { Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
-    import MusikuiArticle from "@/domain/MusikuiArticle"
+    import MusikuiArticle from "@/value_object/MusikuiArticle"
     const namespace = "general_store/old_contest_store"
 
     @Component({

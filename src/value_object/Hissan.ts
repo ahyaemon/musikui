@@ -1,6 +1,6 @@
 import Cell from "./Cell"
 import Parser from "@/util/parser"
-import CellFactory from "@/domain/factory/CellFactory"
+import CellFactory from "@/value_object/factory/CellFactory"
 
 export default class Hissan {
 

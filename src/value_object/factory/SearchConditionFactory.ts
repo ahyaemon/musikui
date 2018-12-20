@@ -1,4 +1,4 @@
-import SearchCondition from "@/domain/SearchCondition"
+import SearchCondition from "@/value_object/SearchCondition"
 
 export default class SearchConditionFactory {
 
