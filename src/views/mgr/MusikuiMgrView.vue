@@ -12,6 +12,15 @@
 
             <MCardSubtitle>Update</MCardSubtitle>
             <MCardBody>
+                <div class="paging">
+                    <button
+                            v-for="ipage in page_amount"
+                            :key="ipage"
+                            :class="{current: ipage==paging.current_page_number}"
+                            v-text="ipage"
+                            @click="change_page_clicked(ipage)"
+                    />
+                </div>
                 <table class="mgr-table">
                     <thead>
                         <tr>
@@ -37,6 +46,7 @@
     import { MPinkButton } from "@/components/button"
     import { Getter, Action, Mutation } from "vuex-class"
     import Musikui from "@/domain/Musikui"
+    import Paging from "@/value_object/Paging"
     const namespace = "mgr_store/musikui_store"
 
     @Component({
@@ -51,8 +61,11 @@
 
     export default class MusikuiMgrView extends Vue {
         @Mutation("set_files", { namespace }) private set_files!: (files: FileList) => void
+        @Mutation("set_page_number", { namespace }) private set_page_number!: (page_number: number) => void
         @Action("fetch_musikuis", { namespace }) private fetch_musikuis!: () => void
         @Getter("musikuis", { namespace }) private musikuis!: Musikui
+        @Getter("paging", { namespace }) private paging!: Paging
+        @Getter("page_amount", { namespace }) private page_amount!: number
 
         private colnames: string[] = [
             "id",
@@ -71,14 +84,19 @@
             this.set_files(elem.target.files)
         }
 
+        private change_page_clicked(page_number: number): void {
+            this.set_page_number(page_number)
+        }
+
     }
 </script>
 
 <style lang="scss" scoped>
     .mgr-table {
+        width: 100%;
         th {
             padding: 10px;
-            background-color: rgb(78, 104, 86);
+            background-color: rgb(107, 138, 116);
             color: white;
             border: 1px solid white;
         }
@@ -86,6 +104,23 @@
             border: 1px solid grey;
             padding: 10px;
         }
-
     }
+
+    .paging {
+        font-size: 120%;
+        color: grey;
+
+        button {
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 0px 4px 0px 4px;
+        }
+
+        .current {
+            font-weight: bold;
+            font-size: 120%;
+            color: black;
+        }
+    }
+
 </style>
