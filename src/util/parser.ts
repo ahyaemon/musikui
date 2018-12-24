@@ -21,9 +21,11 @@ export default class Parser {
 
     /**
      * [問題 / 回答] 部分の行を取得する
+     * ハイフンが歩かないかによって、全角かどうかを判断する
      * @param lines
      */
     public static get_hissan_lines(lines: string[]): string[] {
+        const is_half_mode = lines // TODO
         let rec = false
         const hissan_lines = []
         for (const line of lines) {
@@ -102,6 +104,7 @@ export default class Parser {
      */
     public static get_change_points(ar: boolean[]): number[] {
         return ar.map((bool, index) => {
+            // 最初の要素
             if (index === 0) {
                 return 0
             }

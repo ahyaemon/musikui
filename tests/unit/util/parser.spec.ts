@@ -5,17 +5,29 @@ describe("Parser.ts", () => {
     const template = new MusikuiTemplate()
 
     it("gets level from musikui lines", () => {
-        expect(Parser.get_level(template.lines_plus)).toBe(10)
+        expect(Parser.get_level(template.lines_zen_plus)).toBe(10)
     })
 
-    it("gets hissan lines from musikui lines", () => {
-        const res = Parser.get_hissan_lines(template.lines_plus)
+    it("gets hissan lines from zen plus musikui lines", () => {
+        const res = Parser.get_hissan_lines(template.lines_zen_plus)
         expect(res[0]).toBe("     10         10")
         expect(res.length).toBe(5)
     })
 
+    it("gets hissan lines from han plus hukumen musikui lines", () => {
+        const res = Parser.get_hissan_lines(template.lines_han_plus_hukumen)
+        expect(res[1]).toBe("+MORE +1085")
+        expect(res.length).toBe(4)
+    })
+
+    it("gets hissan lines from zen multiple hukumen musikui lines", () => {
+        const res = Parser.get_hissan_lines(template.lines_zen_multiple_hukumen)
+        expect(res[1]).toBe("*  □□□     *  921")
+        expect(res.length).toBe(8)
+    })
+
     it("gets comment lines from musikui lines", () => {
-        const res = Parser.get_comment_lines(template.lines_plus)
+        const res = Parser.get_comment_lines(template.lines_zen_plus)
         expect(res[0]).toBe("11月11日です。")
         expect(res.length).toBe(2)
     })

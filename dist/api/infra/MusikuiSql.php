@@ -9,7 +9,7 @@
                 FROM
                     musikui
                 ORDER BY
-                    id
+                    id DESC
             ";
         }
 

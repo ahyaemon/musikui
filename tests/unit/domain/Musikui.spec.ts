@@ -7,7 +7,7 @@ describe("Musikui.ts", () => {
     const template = new MusikuiTemplate()
 
     it("parse plus mark musikui text", () => {
-        const m = Musikui.from_text(template.text_plus)
+        const m = Musikui.from_text(template.text_zen_plus)
 
         expect(m.level).toBe(10)
 
@@ -27,7 +27,7 @@ describe("Musikui.ts", () => {
     })
 
     it("parse multiple mark musikui text", () => {
-        const m = Musikui.from_text(template.text_multiple)
+        const m = Musikui.from_text(template.text_zen_multiple)
 
         expect(m.level).toBe(3)
 
@@ -47,7 +47,7 @@ describe("Musikui.ts", () => {
     })
 
     it("parse divide mark musikui text", () => {
-        const m = Musikui.from_text(template.text_divide)
+        const m = Musikui.from_text(template.text_zen_divide)
 
         expect(m.level).toBe(10)
 

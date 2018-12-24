@@ -7,7 +7,7 @@
                 <div class="field">
                     <input type="file" multiple v-on:change="files_selected"/>
                 </div>
-                <MPinkButton>Go</MPinkButton>
+                <MPinkButton @click.native="submit_musikuis_clicked">Go</MPinkButton>
             </MCardBody>
 
             <MCardSubtitle>Update</MCardSubtitle>
@@ -54,6 +54,7 @@
         @Mutation("set_files", { namespace }) private set_files!: (files: FileList) => void
         @Mutation("set_page_number", { namespace }) private set_page_number!: (page_number: number) => void
         @Action("fetch_musikuis", { namespace }) private fetch_musikuis!: () => void
+        @Action("submit_musikuis", { namespace }) private submit_musikuis!: () => void
         @Getter("musikuis", { namespace }) private musikuis!: Musikui
         @Getter("paging", { namespace }) private paging!: Paging
         @Getter("page_amount", { namespace }) private page_amount!: number
@@ -81,6 +82,11 @@
 
         private edit_clicked(musikui_id: number): void {
             this.$router.push(`/mgr/musikui/edit/${musikui_id}`)
+        }
+
+        private async submit_musikuis_clicked() {
+            await this.submit_musikuis()
+            await this.fetch_musikuis()
         }
 
     }

@@ -25,6 +25,7 @@ export const actions: ActionTree<NewContestMgrState, RootState> = {
 
     /**
      * 虫食い算のテキストファイルをパースしてからサーバーに送る
+     * 当処理の後に同期的に直近コンテストを取得するため、asyncを付与する
      */
     async add_new_contest({ commit, state }) {
         // テキストファイルのリストにする
