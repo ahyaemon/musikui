@@ -2,6 +2,7 @@ import { Module } from "vuex"
 import { RootState } from "@/store/types"
 import { new_contest_store } from "./new_contest/index"
 import { musikui_store } from "./musikui/index"
+import { auth_store } from "./auth/index"
 
 interface MgrState {
     version: string
@@ -12,5 +13,6 @@ export const mgr_store: Module<MgrState, RootState> = {
     modules: {
         new_contest_store,
         musikui_store,
+        auth_store,
     },
 }

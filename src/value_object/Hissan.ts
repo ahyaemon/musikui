@@ -5,12 +5,12 @@ import CellFactory from "@/value_object/factory/CellFactory"
 export default class Hissan {
 
     public static default(): Hissan {
-        return new Hissan([])
+        return new Hissan([[]])
     }
 
     public static from_lines(lines: string[]): { question: Hissan, answer: Hissan } {
         // 解析のため、頭に半角スペースを付与
-        const new_lines = lines.map(line => " " + line)
+        const new_lines = lines.map((line) => " " + line)
 
         const binary_lines = new_lines.map((line) => Parser.to_binary(line))
         const bools_array = binary_lines.map((line) => Parser.to_boolean(line).concat([false]))

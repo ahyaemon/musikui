@@ -33,5 +33,28 @@
             }, $result);
         }
 
+        public static function find_by_ids($ids) {
+            $sql = MusikuiSql::select_by_ids($ids);
+            $result = SqlExecuter::select($sql);
+            $musikuis = array_map(function($record) {
+                return [
+                    "id" => $record["id"],
+                    "level" => $record["level"],
+                    "mark" => $record["mark"],
+                    "comment" => $record["comment"],
+                    "formula" => json_decode($record["formula"]),
+                    "hissan_question" => [
+                        "rows" => json_decode($record["hissan_question"])
+                    ],
+                    "hissan_answer" => [
+                        "rows" => json_decode($record["hissan_answer"])
+                    ],
+                    "ncol" => $record["ncol"],
+                    "nrow" => $record["nrow"]
+                ];
+            }, $result);
+            return $musikuis;
+        }
+
     }
 ?>

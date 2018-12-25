@@ -17,7 +17,7 @@ export default {
     children: [
         { path: "", meta: { title: "今週の問題 | 虫食い算やろうぜ！！" }, component: NewContestView },
         { path: "how", meta: { title: "解き方 | 虫食い算やろうぜ！！" }, component: HowView },
-        { path: "how/what-is-musikuizan", meta: { title: "虫食い算とは | 虫食い算やろうぜ！！" }, component: WhatView },
+        { path: "how/what", meta: { title: "虫食い算とは | 虫食い算やろうぜ！！" }, component: WhatView },
         { path: "how/dansa-magic", meta: { title: "桁数の段差マジック | 虫食い算やろうぜ！！" }, component: DansaMagicView },
         { path: "search-question", meta: { title: "検索 | 虫食い算やろうぜ！！" }, component: SearchQuestionView },
         { path: "search-result/:min_level/:max_level/:plus_selected/:multiple_selected/:divide_selected/:min_col/:max_col",

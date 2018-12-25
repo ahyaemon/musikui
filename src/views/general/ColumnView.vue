@@ -1,14 +1,10 @@
 <template>
-    <div>
-        <MCard>
-            <MCardTitle>コラム</MCardTitle>
-            <MCardBody>
-                <div class="m-card">
-                    コラムを記載する
-                </div>
-            </MCardBody>
-        </MCard>
-    </div>
+    <MCard>
+        <MCardTitle>コラム</MCardTitle>
+        <MCardBody>
+            コラムが何もないという真実
+        </MCardBody>
+    </MCard>
 </template>
 
 <script lang="ts">

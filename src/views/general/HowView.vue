@@ -32,7 +32,7 @@
     export default class HowView extends Vue {
 
         private links: any[] = [
-            { url: "/how/what-is-musikuizan", title: "第0回 虫食い算とは" },
+            { url: "/how/what", title: "第0回 虫食い算とは" },
             { url: "/how/dansa-magic", title: "第1回 桁数の段差マジック" },
         ]
 

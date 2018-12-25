@@ -62,6 +62,21 @@
             ";
         }
 
+        public static function select_by_ids($ids) {
+            $quoted = array_map(function($id) {
+                return "'".$id."'";
+            }, $ids);
+            $joinned = implode(", ", $quoted);
+            return "
+                SELECT
+                    *
+                FROM
+                    musikui
+                WHERE
+                    id IN (${joinned})
+            ";
+        }
+
     }
 
 ?>
