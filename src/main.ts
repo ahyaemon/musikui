@@ -1,7 +1,6 @@
 import Vue from "vue"
 import App from "./App.vue"
 import router from "./route/router"
-// import router from "./test/router"
 import store from "./store/store"
 import VueScrollTo from "vue-scrollto"
 import load_icons from "./icon"

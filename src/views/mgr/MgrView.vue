@@ -11,6 +11,16 @@
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
     import { MNav, MFooter } from "@/components/layout"
+    import { Route } from "vue-router"
+    import { Getter, Action, Mutation } from "vuex-class"
+    import { state } from "@/store/mgr/auth"
+    const namespace = "mgr_store/auth_store"
+
+    Component.registerHooks([
+        "beforeRouteEnter",
+        "beforeRouteLeave",
+        "beforeRouteUpdate",
+    ])
 
     @Component({
         components: {
@@ -19,6 +29,7 @@
         },
     })
     export default class MgrView extends Vue {
+        @Getter("is_admin", { namespace }) private is_admin!: boolean
 
         private links = [
             { url: "/mgr/new-contest", title: "今週の問題" },
@@ -29,6 +40,22 @@
             { url: "/mgr/develop", title: "develop" },
             { url: "/", title: "もどる" },
         ]
+
+        private beforeRouteEnter(to: Route, from: Route, next: any) {
+            if (state.is_admin) {
+                next()
+            } else {
+                next("/mgr-login")
+            }
+        }
+
+        private beforeRouteUpdate(to: Route, from: Route, next: any) {
+            if (this.is_admin) {
+                next()
+            } else {
+                next("/mgr-login")
+            }
+        }
 
     }
 </script>

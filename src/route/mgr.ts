@@ -4,12 +4,13 @@ import NewContestMgrView from "@/views/mgr/NewContestMgrView.vue"
 import DevelopMgrView from "@/views/mgr/DevelopMgrView.vue"
 import MusikuiMgrView from "@/views/mgr/MusikuiMgrView.vue"
 import MusikuiEditView from "@/views/mgr/MusikuiEditView.vue"
+import { state } from "@/store/mgr/auth/"
+import { Route } from "vue-router"
 
 export default {
     path: "/mgr",
     component: MgrView,
     children: [
-        { path: "login", meta: { title: "ログイン | 管理ページ" }, component: LoginView },
         { path: "new-contest", meta: { title: "今週の問題 | 管理ページ" }, component: NewContestMgrView },
         { path: "musikui", meta: { title: "Musikui | 管理ページ" }, component: MusikuiMgrView },
         { path: "musikui/edit/:musikui_id", meta: { title: "Musikui Edit | 管理ページ" }, component: MusikuiEditView },

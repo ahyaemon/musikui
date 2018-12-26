@@ -13,6 +13,11 @@
                 </div>
             </MCardBody>
 
+            <MCardSubtitle>store</MCardSubtitle>
+            <MCardBody>
+                <MPinkButton @click.native="is_admin_false_clicked">is_adminをfalseにする</MPinkButton>
+            </MCardBody>
+
             <MCardSubtitle>サンプル</MCardSubtitle>
             <MCardBody>
                 <MPinkButton>掛け算</MPinkButton>
@@ -27,6 +32,8 @@
     import { MCard, MCardTitle, MCardSubtitle, MCardBody } from "@/components/card"
     import { MPinkButton } from "@/components/button"
     import Fetcher from "@/util/fetcher"
+    import { Getter, Action, Mutation } from "vuex-class"
+    const namespace = "mgr_store/auth_store"
 
     interface SessionContent {
         key: string
@@ -43,6 +50,8 @@
         },
     })
     export default class DevelopMgrView extends Vue {
+        @Mutation("set_is_admin", { namespace }) private set_is_admin!: (is_admin: boolean) => void
+
         private session_destroyed: boolean = false
         private session_contents: SessionContent[] = []
 
@@ -72,6 +81,10 @@
                 }
                 this.session_contents = kvs
             })
+        }
+
+        private is_admin_false_clicked() {
+            this.set_is_admin(false)
         }
 
     }

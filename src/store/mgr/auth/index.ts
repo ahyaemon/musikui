@@ -7,6 +7,7 @@ import { actions } from "./actions"
 
 export const state: AuthState = {
     is_admin: false,
+    error_fields: [],
 }
 
 export const auth_store: Module<AuthState, RootState> = {
