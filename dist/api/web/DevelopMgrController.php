@@ -14,6 +14,11 @@
             return json_encode(true);
         }
 
+        public static function get_crypted_text($origin_text) {
+            $crypted_text = password_hash($origin_text, PASSWORD_BCRYPT);
+            return json_encode($crypted_text);
+        }
+
     }
 
     // 管理者ロール確認
@@ -27,6 +32,11 @@
         $mapping = $_GET["mapping"];
         if ($mapping == "get_session_contents") {
             $json = DevelopMgrController::get_session_contents();
+            echo $json;
+        }
+        else if ($mapping == "get_crypted_text") {
+            $origin_text = $_GET["origin_text"];
+            $json = DevelopMgrController::get_crypted_text($origin_text);
             echo $json;
         }
     }

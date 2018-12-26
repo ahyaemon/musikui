@@ -13,9 +13,24 @@
                 </div>
             </MCardBody>
 
-            <MCardSubtitle>store</MCardSubtitle>
+            <MCardSubtitle>store操作</MCardSubtitle>
             <MCardBody>
                 <MPinkButton @click.native="is_admin_false_clicked">is_adminをfalseにする</MPinkButton>
+            </MCardBody>
+
+            <MCardSubtitle>暗号化の確認</MCardSubtitle>
+            <MCardBody>
+                <div>
+                    <span>原文</span>
+                    <input type="text" v-model="origin_text"/>
+                </div>
+                <div>
+                    <MPinkButton @click.native="crypt_clicked">暗号化</MPinkButton>
+                </div>
+                <div>
+                    <span>結果</span>
+                    <input type="text" v-model="crypted_text" readonly/>
+                </div>
             </MCardBody>
 
             <MCardSubtitle>サンプル</MCardSubtitle>
@@ -51,13 +66,16 @@
     })
     export default class DevelopMgrView extends Vue {
         @Mutation("set_is_admin", { namespace }) private set_is_admin!: (is_admin: boolean) => void
+        @Action("crypt", { namespace }) private crypt!: () => void
 
         private session_destroyed: boolean = false
         private session_contents: SessionContent[] = []
+        private origin_text: string = ""
+        private crypted_text: string = ""
 
         private destroy_session() {
             Fetcher.post({
-                controller: "DevelopMgrController.php",
+                controller: "DevelopMgrController",
                 method: "destroy_session",
                 params: {},
             }).then((response) => {
@@ -68,7 +86,7 @@
 
         private show_session() {
             Fetcher.get({
-                controller: "DevelopMgrController.php",
+                controller: "DevelopMgrController",
                 method: "get_session_contents",
                 params: {},
             }).then((response) => {
@@ -87,8 +105,23 @@
             this.set_is_admin(false)
         }
 
+        private crypt_clicked() {
+            Fetcher.get({
+                controller: "DevelopMgrController",
+                method: "get_crypted_text",
+                params: {
+                    origin_text: this.origin_text,
+                },
+            }).then((response) => {
+                this.crypted_text = response
+            })
+        }
+
     }
 </script>
 
 <style lang="scss" scoped>
+    input {
+        width: 800px;
+    }
 </style>

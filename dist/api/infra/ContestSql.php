@@ -48,12 +48,11 @@
             return $sql;
         }
 
-        public static function search_by_condition($condition) {
+        public static function search_by_condition($condition, $remove_musikui_ids) {
             $mark_in_sql = "";
             $plus_selected = $condition->plus_selected;
             $multiple_selected = $condition->multiple_selected;
             $divide_selected = $condition->multiple_selected;
-
             $selected_marks = [];
             if ($condition->plus_selected) {
                 array_push($selected_marks, "'plus'");
@@ -64,10 +63,18 @@
             if ($condition->divide_selected) {
                 array_push($selected_marks, "'divide'");
             }
-
             if (count($selected_marks) > 0) {
                 $marks = implode(", ", $selected_marks);
-                $mark_in_sql = "AND mark IN ($marks)";
+                $mark_in_sql = "AND musikui.mark IN ($marks)";
+            }
+
+            $not_in = "";
+            if (count($remove_musikui_ids) > 0) {
+                $quoted = array_map(function($id) {
+                    return "'${id}'";
+                }, $remove_musikui_ids);
+                $joinned = implode(", ", $quoted);
+                $not_in = " AND musikui.id NOT IN (${joinned})";
             }
 
             $sql = "
@@ -106,6 +113,7 @@
                     musikui.ncol >= '{$condition->min_col}' AND
                     musikui.ncol <= '{$condition->max_col}'
                     {$mark_in_sql}
+                    {$not_in}
             ";
             return $sql;
         }

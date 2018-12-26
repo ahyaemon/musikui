@@ -36,9 +36,11 @@
          *     date: "2018/12/11"
          *     question_number: 1
          * }
+         * howページで使用しているmusikuiは結果から取り除く必要がある
          */
         public static function search_by_condition($condition) {
-            $sql = ContestSql::search_by_condition($condition);
+            $remove_musikui_ids = [];
+            $sql = ContestSql::search_by_condition($condition, $remove_musikui_ids);
             $result = SqlExecuter::select($sql);
             $musikuis_with_contest_info = ContestMapper::to_musikuis_with_contest_info($result);
             return $musikuis_with_contest_info;
