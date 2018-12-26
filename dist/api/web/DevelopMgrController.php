@@ -1,18 +1,25 @@
 <?php
+    require_once(dirname(__FILE__)."/../Path.php");
+    require_once(Path::root()."/AuthUtil.php");
+    session_start();
 
     class DevelopMgrController {
 
         public static function get_session_contents() {
-            session_start();
             return json_encode($_SESSION);
         }
 
         public static function destroy_session() {
-            session_start();
             session_destroy();
             return json_encode(true);
         }
 
+    }
+
+    // 管理者ロール確認
+    if (!AuthUtil::is_admin($_SESSION)) {
+        http_response_code(403);
+        return;
     }
 
     // GET
@@ -23,6 +30,7 @@
             echo $json;
         }
     }
+
     // POST
     if (count($_POST) > 0){
         $mapping = $_POST["mapping"];

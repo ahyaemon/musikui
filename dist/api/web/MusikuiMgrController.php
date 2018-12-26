@@ -1,8 +1,10 @@
 <?php
 
     require_once(dirname(__FILE__)."/../Path.php");
+    require_once(Path::root()."/AuthUtil.php");
     require_once(Path::infra()."/MusikuiRepository.php");
     require_once(Path::web()."/mapper/MusikuiWebMapper.php");
+    session_start();
 
     class MusikuiMgrController {
 
@@ -19,6 +21,12 @@
             return json_encode(true);
         }
 
+    }
+
+    // 管理者ロール確認
+    if (!AuthUtil::is_admin($_SESSION)) {
+        http_response_code(403);
+        return;
     }
 
     // GET

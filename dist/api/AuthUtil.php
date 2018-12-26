@@ -2,12 +2,11 @@
 
     class AuthUtil {
 
-        public static function is_admin() {
-            session_start();
-            if (!isset($_SESSION["is_admin"])) {
+        public static function is_admin($session) {
+            if (!isset($session["is_admin"])) {
                 return false;
             }
-            if (!$_SESSION["is_admin"]) {
+            if (!$session["is_admin"]) {
                 return false;
             }
             return true;

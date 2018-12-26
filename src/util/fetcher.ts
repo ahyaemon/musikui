@@ -2,8 +2,6 @@ import axios from "axios"
 import router from "@/route/router"
 import { state } from "@/store/mgr/auth"
 
-// TODO errorページへの遷移とともに、auth_state.is_adminをfalseにする
-
 interface FetchParams {
     controller: string,
     method: string,
@@ -25,6 +23,7 @@ export default class Fetcher {
             res = response.data
         }).catch((err) => {
             if (err.response.status === 403) {
+                state.is_admin = false
                 router.push("/error")
                 throw err
             }
@@ -51,6 +50,7 @@ export default class Fetcher {
             res = response.data
         }).catch((err) => {
             if (err.response.status === 403) {
+                state.is_admin = false
                 router.push("/error")
                 throw err
             }
@@ -81,6 +81,7 @@ export default class Fetcher {
             res = response.data
         }).catch((err) => {
             if (err.response.status === 403) {
+                state.is_admin = false
                 router.push("/error")
                 throw err
             }

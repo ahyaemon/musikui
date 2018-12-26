@@ -5,6 +5,7 @@
     require_once(Path::infra()."/ContestRepository.php");
     require_once(Path::infra()."/MusikuiRepository.php");
     require_once(Path::web()."/mapper/MusikuiWebMapper.php");
+    session_start();
 
     class NewContestMgrController {
 
@@ -59,7 +60,8 @@
         }
     }
 
-    if (!AuthUtil::is_admin()) {
+    // 管理者ロール確認
+    if (!AuthUtil::is_admin($_SESSION)) {
         http_response_code(403);
         return;
     }
