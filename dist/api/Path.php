@@ -2,7 +2,7 @@
 
 class Path {
 
-    private static function root() {
+    public static function root() {
         return dirname(__FILE__);
     }
 

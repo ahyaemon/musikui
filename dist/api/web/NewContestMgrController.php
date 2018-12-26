@@ -1,6 +1,7 @@
 <?php
 
     require_once(dirname(__FILE__)."/../Path.php");
+    require_once(Path::root()."/AuthUtil.php");
     require_once(Path::infra()."/ContestRepository.php");
     require_once(Path::infra()."/MusikuiRepository.php");
     require_once(Path::web()."/mapper/MusikuiWebMapper.php");
@@ -56,6 +57,11 @@
 
             return json_encode(true);
         }
+    }
+
+    if (!AuthUtil::is_admin()) {
+        http_response_code(403);
+        return;
     }
 
     // GET

@@ -17,6 +17,7 @@
                     <p><input type="password" v-model="password"/></p>
                 </div>
                 <MPinkButton @click.native="login_clicked">GO</MPinkButton>
+                <router-link to="/">Topへ</router-link>
             </MCardBody>
         </MCard>
     </div>
@@ -43,8 +44,8 @@
         @Action("login", { namespace }) private login!: (params: { name: string, password: string }) => void
         @Getter("error_fields", { namespace }) private error_fields!: ErrorField[]
 
-        private name: string = ""
-        private password: string = ""
+        private name: string = "testman"
+        private password: string = "testpass"
 
         private async login_clicked() {
             this.login({

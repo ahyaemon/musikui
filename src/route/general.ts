@@ -8,6 +8,7 @@ import SearchQuestionView from "@/views/general/SearchQuestionView.vue"
 import SearchResultView from "@/views/general/SearchResultView.vue"
 import ColumnView from "@/views/general/ColumnView.vue"
 import AboutView from "@/views/general/AboutView.vue"
+import ErrorView from "@/views/general/ErrorView.vue"
 
 import mgr_route from "./mgr"
 
@@ -25,5 +26,6 @@ export default {
         { path: "old-contest/:contest_id", meta: { title: "過去の問題 | 虫食い算やろうぜ！！" }, component: OldContestView },
         { path: "column", meta: { title: "コラム | 虫食い算やろうぜ！！" }, component: ColumnView },
         { path: "about", meta: { title: "About | 虫食い算やろうぜ！！" }, component: AboutView },
+        { path: "error", meta: { title: "Error | 虫食い算やろうぜ！！" }, component: ErrorView },
     ],
 }

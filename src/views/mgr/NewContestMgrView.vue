@@ -75,7 +75,7 @@
         @Action("update_current_contest_id", { namespace }) private update_current_contest_id!: () => void
         @Action("add_new_contest", { namespace }) private add_new_contest!: () => void
 
-        private created(): void {
+        private created() {
             this.set_next_sunday()
             this.fetch_recent_contests()
         }

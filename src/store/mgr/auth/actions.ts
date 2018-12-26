@@ -16,6 +16,7 @@ export const actions: ActionTree<AuthState, RootState> = {
         }).then((response) => {
             if (response.error_fields) {
                 commit("set_error_fields", response.error_fields)
+                commit("set_is_admin", false)
                 return
             }
             commit("set_is_admin", true)
