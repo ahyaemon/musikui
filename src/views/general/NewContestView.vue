@@ -66,9 +66,7 @@
         private respondent_displayed: boolean = false
 
         private created() {
-            if (!this.current_contest.has_musikuis()) {
-                this.fetch_new_contest()
-            }
+            this.fetch_new_contest()
         }
 
         private switch_respondent_displayed(): void {

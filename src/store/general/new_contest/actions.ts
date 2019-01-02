@@ -8,14 +8,30 @@ const controller = "NewContestController"
 
 export const actions: ActionTree<NewContestState, RootState> = {
 
-    fetch_new_contest({ commit }): void {
+    /**
+     * 今storeにあるcontestが最新でない場合、最新のcontestを取得する
+     * @param param0
+     */
+    fetch_new_contest({ commit, state }): void {
         Fetcher.get({
             controller,
-            method: "get",
+            method: "get_current_contest_id",
             params: {},
-        }).then((response) => {
-            commit("set_current_contest_from_object", response.current_contest)
-            commit("set_prev_contest", response.prev_contest)
+        }).then((current_contest_id) => {
+            // storeのcontestが最新ならreturn
+            if (state.current_contest.id === current_contest_id) {
+                return
+            }
+
+            // 最新contestの取得
+            Fetcher.get({
+                controller,
+                method: "get",
+                params: {},
+            }).then((response) => {
+                commit("set_current_contest_from_object", response.current_contest)
+                commit("set_prev_contest", response.prev_contest)
+            })
         })
     },
 

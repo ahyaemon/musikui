@@ -30,6 +30,11 @@
             return json_encode($respondents);
         }
 
+        public static function get_current_contest_id() {
+            $current_contest_id = ContestRepository::find_current_contest_id();
+            return json_encode($current_contest_id);
+        }
+
         /**
          * 正解した場合、セッションに時間を詰める
          */
@@ -113,6 +118,10 @@
         else if ($mapping == "get_respondents_by_musikui_id") {
             $musikui_id = $_GET["musikui_id"];
             $json = NewContestController::get_respondents_by_musikui_id($musikui_id);
+            echo $json;
+        }
+        else if ($mapping == "get_current_contest_id") {
+            $json = NewContestController::get_current_contest_id();
             echo $json;
         }
     }
