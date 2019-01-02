@@ -28,6 +28,7 @@
             <MCommentForm
                     :answer_datetime="answer_datetime"
                     :musikui_id="article.musikui.id"
+                    @comment_submitted="comment_submitted"
             />
         </div>
 
@@ -40,7 +41,7 @@
 
 <script lang="ts">
     import Vue from "vue"
-    import { Component, Prop } from "vue-property-decorator"
+    import { Component, Prop, Emit } from "vue-property-decorator"
     import MMusikuiTable from "./MMusikuiTable.vue"
     import MAnswerForm from "./MAnswerForm.vue"
     import MRespondentList from "./MRespondentList.vue"
@@ -64,6 +65,11 @@
         private correct_answer_submitted(answer_datetime: string) {
             this.answer_datetime = answer_datetime
             this.submitted_correct_answer = true
+        }
+
+        @Emit("comment_submitted")
+        private comment_submitted() {
+            return this.article.musikui.id
         }
 
     }

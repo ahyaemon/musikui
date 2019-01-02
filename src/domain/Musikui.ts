@@ -7,6 +7,21 @@ import Parser from "@/util/parser"
 
 export default class Musikui {
 
+    public static default(): Musikui {
+        return new Musikui(
+            0,
+            0,
+            "default comment",
+            Mark.Plus,
+            Formula.default(),
+            Hissan.default(),
+            Hissan.default(),
+            1,
+            1,
+            [Respondent.default()],
+        )
+    }
+
     /**
      * Dr.kenから受領したテキストファイルを、Musikui形式にして変換する
      */
@@ -28,6 +43,21 @@ export default class Musikui {
             hissan_both.answer.rows.length,
             hissan_both.answer.rows[0].length,
             [Respondent.default()],
+        )
+    }
+
+    public static clone_with_new_respondents(old: Musikui, respondents: Respondent[]) {
+        return new Musikui(
+            old.id,
+            old.level,
+            old.comment,
+            old.mark,
+            old.formula,
+            old.hissan_question,
+            old.hissan_answer,
+            old.nrow,
+            old.ncol,
+            respondents,
         )
     }
 

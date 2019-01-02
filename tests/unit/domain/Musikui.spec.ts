@@ -1,6 +1,7 @@
 import Musikui from "@/domain/Musikui"
 import { CellType } from "@/value_object/CellType"
 import MusikuiTemplate from "../../MusikuiTemplate"
+import Respondent from "@/domain/Respondent"
 
 describe("Musikui.ts", () => {
 
@@ -64,6 +65,16 @@ describe("Musikui.ts", () => {
 
         expect(m.formula.lefts).toEqual([16046714453, 842303])
         expect(m.formula.right).toBe(19051)
+    })
+
+    it("create clone with new respondent", () => {
+        const old_musikui = Musikui.default()
+        const new_respondent = new Respondent(1, "NEWMAN", "I AM NEWMAN", "20190101")
+        const new_musikui = Musikui.clone_with_new_respondents(old_musikui, [new_respondent])
+
+        expect(old_musikui.id).toBe(0)
+        expect(new_musikui.id).toBe(0)
+        expect(new_musikui.respondents[0].name).toBe("NEWMAN")
     })
 
 })

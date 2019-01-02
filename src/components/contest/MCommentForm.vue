@@ -1,6 +1,6 @@
 <template>
     <div class="comment-form">
-        <p>正解！！{{ answer_datetime }}</p>
+        <p>正解！！({{ _answer_datetime }})</p>
         <p>よかったらコメントをば</p>
 
         <p> {{ comment_error_message }}</p>
@@ -17,7 +17,7 @@
 <script lang="ts">
     import Vue from "vue"
     import { MPinkButton } from "@/components/button"
-    import { Component, Prop } from "vue-property-decorator"
+    import { Component, Prop, Emit } from "vue-property-decorator"
     import Fetcher from "@/util/fetcher"
 
     @Component({
@@ -33,6 +33,13 @@
         @Prop() private answer_datetime!: string
         @Prop() private musikui_id!: number
 
+        private get _answer_datetime(): string {
+            const ymd = this.answer_datetime.slice(0, 9)
+            const hh = this.answer_datetime.slice(11, 13)
+            const mm = this.answer_datetime.slice(13, 15)
+            const dd = this.answer_datetime.slice(15, 17)
+            return `${ymd} ${hh}:${mm}:${dd}`
+        }
 
         private submit_comment_clicked() {
             Fetcher.post({
@@ -50,8 +57,12 @@
                 }
                 this.comment_error_message = ""
                 this.commented = true
+                this.comment_submitted()
             })
         }
+
+        @Emit("comment_submitted")
+        private comment_submitted() {}
 
     }
 

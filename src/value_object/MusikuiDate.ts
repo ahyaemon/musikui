@@ -5,6 +5,10 @@ export default class MusikuiDate {
 
     private date: Date
 
+    /**
+     *  コンストラクタ
+     * @param date yyyy/mm/dd
+     */
     constructor(
         date: string,
     ) {

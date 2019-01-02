@@ -41,9 +41,6 @@
         private answer_error_message: string = ""
         private answer_datetime: string = ""
 
-        private name: string = ""
-        private comment: string = ""
-
         private get _mark(): string {
             if (this.mark === "plus") {
                 return "＋"

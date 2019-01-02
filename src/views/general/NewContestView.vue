@@ -29,7 +29,10 @@
         </MCard>
 
         <MCard v-for="(article, iarticle) in musikui_articles" :key="iarticle" :id="'a' + (iarticle + 1)">
-            <MMusikuiArticle :article="article" />
+            <MMusikuiArticle
+                    :article="article"
+                    @comment_submitted="comment_submitted"
+            />
         </MCard>
     </div>
 </template>
@@ -59,6 +62,7 @@
         @Getter("current_contest", { namespace }) private current_contest!: Contest
         @Getter("musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle[]
         @Action("fetch_new_contest", { namespace }) private fetch_new_contest!: () => void
+        @Action("fetch_respondent", { namespace }) private fetch_respondent!: (musikui_id: number) => void
         private respondent_displayed: boolean = false
 
         private created() {
@@ -69,6 +73,10 @@
 
         private switch_respondent_displayed(): void {
             this.respondent_displayed = !this.respondent_displayed
+        }
+
+        private comment_submitted(musikui_id: number) {
+            this.fetch_respondent(musikui_id)
         }
 
     }
