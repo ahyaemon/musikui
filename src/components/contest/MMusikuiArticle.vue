@@ -8,7 +8,7 @@
         </div>
 
         <div class="comment">
-            <span>{{ article.musikui.comment }}</span>
+            <span v-html="article.musikui.comment"></span>
         </div>
 
         <div class="question">
