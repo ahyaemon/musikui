@@ -19,14 +19,14 @@ export const actions: ActionTree<NewContestState, RootState> = {
         })
     },
 
-    fetch_respondent({ commit, state }, params: any) {
+    fetch_respondents({ commit, state }, params: { musikui_id: number }) {
         Fetcher.get({
             controller,
-            method: "get_respondent_by_musikui_id",
+            method: "get_respondents_by_musikui_id",
             params,
         }).then((response) => {
             const contest = Contest.clone_with_new_respondents(state.current_contest, params.musikui_id, response)
-            commit("set_contest", contest)
+            commit("set_current_contest", contest)
         })
     },
 

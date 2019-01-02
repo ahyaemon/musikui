@@ -10,6 +10,12 @@
             SqlExecuter::insert($insert_sql);
         }
 
+        public static function find_by_musikui_id($musikui_id) {
+            $sql = RespondentSql::select_by_musikui_id($musikui_id);
+            $respondents = SqlExecuter::select($sql);
+            return $respondents;
+        }
+
     }
 
 ?>

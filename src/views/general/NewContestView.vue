@@ -62,7 +62,7 @@
         @Getter("current_contest", { namespace }) private current_contest!: Contest
         @Getter("musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle[]
         @Action("fetch_new_contest", { namespace }) private fetch_new_contest!: () => void
-        @Action("fetch_respondent", { namespace }) private fetch_respondent!: (musikui_id: number) => void
+        @Action("fetch_respondents", { namespace }) private fetch_respondents!: (params: any) => void
         private respondent_displayed: boolean = false
 
         private created() {
@@ -76,7 +76,7 @@
         }
 
         private comment_submitted(musikui_id: number) {
-            this.fetch_respondent(musikui_id)
+            this.fetch_respondents({ musikui_id })
         }
 
     }

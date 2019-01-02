@@ -14,6 +14,17 @@
             ";
         }
 
+        public static function select_by_musikui_id($musikui_id) {
+            return "
+                SELECT
+                  *
+                FROM
+                  respondent
+                WHERE
+                  musikui_id = ${musikui_id}
+            ";
+        }
+
     }
 
 ?>

@@ -6,6 +6,7 @@
     require_once(Path::web()."/NewContestValidator.php");
 
     class NewContestController {
+
         public static function get() {
             // 今週の問題のIDを取得
             $current_contest_id = ContestRepository::find_current_contest_id();
@@ -22,6 +23,11 @@
             ];
 
             return json_encode($new_contest);
+        }
+
+        public static function get_respondents_by_musikui_id($musikui_id) {
+            $respondents = RespondentRepository::find_by_musikui_id($musikui_id);
+            return json_encode($respondents);
         }
 
         /**
@@ -102,6 +108,11 @@
             $musikui_id = $_GET["musikui_id"];
             $formula = json_decode($_GET["formula"]);
             $json = NewContestController::is_correct_answer($musikui_id, $formula);
+            echo $json;
+        }
+        else if ($mapping == "get_respondents_by_musikui_id") {
+            $musikui_id = $_GET["musikui_id"];
+            $json = NewContestController::get_respondents_by_musikui_id($musikui_id);
             echo $json;
         }
     }
