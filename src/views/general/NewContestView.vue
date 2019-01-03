@@ -6,8 +6,18 @@
             <MCardBody>
                 <p>{{ current_contest.date.format() }}</p>
                 <p>{{ current_contest.comment }}</p>
+                <br>
+                <hr>
+                <br>
                 <div>
-                    <a @click="switch_respondent_displayed">
+                    <p>
+                        <span>前回の最難問</span>
+                        <span>Q{{ prev_last_musikui_number }} (Lv. {{ prev_last_musikui.level }})</span>
+                        <span>回答者様</span>
+                        <MRespondentList :respondents="prev_last_musikui.respondents"/>
+                    </p>
+                    <!-- 全回答者をドロップダウンリストで表示する形式はやりすぎな気がする -->
+                    <!-- <a @click="switch_respondent_displayed">
                         <span v-if="respondent_displayed">▼</span>
                         <span v-else>▶</span>
                         先週の覇者
@@ -20,11 +30,12 @@
                             </p>
                             <MRespondentList :respondents="musikui.respondents"/>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
+                <br>
+                <hr>
                 <p>次回は {{ current_contest.date.next_sunday().format() }} になります。</p>
                 <p>それでは、問題をお楽しみください</p>
-                <hr>
                 <MJumpList :musikuis="current_contest.musikuis"/>
             </MCardBody>
         </MCard>
@@ -81,6 +92,14 @@
 
         private comment_submitted(musikui_id: number) {
             this.fetch_respondents({ musikui_id })
+        }
+
+        private get prev_last_musikui_number() {
+            return this.prev_contest.musikuis.length
+        }
+
+        private get prev_last_musikui() {
+            return this.prev_contest.musikuis[this.prev_last_musikui_number - 1]
         }
 
     }
