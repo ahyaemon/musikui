@@ -1,3 +1,0 @@
-CREATE TABLE IF NOT EXISTS current(
-    contest_id INTEGER NOT NULL
-)
