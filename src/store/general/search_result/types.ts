@@ -6,6 +6,7 @@ import Musikui from "@/domain/Musikui"
 export interface SearchResultState {
     searched_condition: SearchCondition
     musikuis_with_contest_info: MusikuiWithContestInfo[]
+    is_waiting: boolean
 }
 
 /**

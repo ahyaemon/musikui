@@ -7,6 +7,10 @@ import Musikui from "@/domain/Musikui"
 
 export const getters: GetterTree<OldContestState, RootState> = {
 
+    is_waiting(state): boolean {
+        return state.is_waiting
+    },
+
     contest(state): Contest {
         return state.contest
     },

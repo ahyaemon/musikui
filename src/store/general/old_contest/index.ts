@@ -13,10 +13,11 @@ import MusikuiDate from "@/value_object/MusikuiDate"
 export const state: OldContestState = {
     contest: new Contest(
         0,
-        new MusikuiDate("2018/11/30"),
-        "contest",
+        new MusikuiDate("2000/01/01"),
+        "ロードちぅ",
         [],
     ),
+    is_waiting: false,
 }
 
 export const old_contest_store: Module<OldContestState, RootState> = {

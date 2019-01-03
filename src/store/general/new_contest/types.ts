@@ -9,4 +9,5 @@ import { Difficulty } from "@/value_object/Difficulty"
 export interface NewContestState {
     current_contest: Contest
     prev_contest: Contest
+    is_waiting: boolean
 }

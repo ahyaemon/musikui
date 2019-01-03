@@ -7,6 +7,10 @@ import MusikuiArticle from "@/value_object/MusikuiArticle"
 
 export const getters: GetterTree<SearchResultState, RootState> = {
 
+    is_waiting(state): boolean {
+        return state.is_waiting
+    },
+
     musikui_articles(state): MusikuiArticle[] {
         return state.musikuis_with_contest_info.map((m: MusikuiWithContestInfo, idx) => {
             return {

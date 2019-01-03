@@ -8,6 +8,10 @@ import MusikuiFactory from "@/domain/factory/MusikuiFactory"
 
 export const mutations: MutationTree<SearchResultState> = {
 
+    set_is_waiting(state, is_waiting: boolean) {
+        state.is_waiting = is_waiting
+    },
+
     set_searched_condition(state, condition: SearchCondition): void {
         state.searched_condition = condition
     },

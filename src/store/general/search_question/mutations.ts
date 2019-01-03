@@ -4,6 +4,10 @@ import SearchCondition from "@/value_object/SearchCondition"
 
 export const mutations: MutationTree<SearchQuestonState> = {
 
+    set_is_waiting(state, is_waiting: boolean) {
+        state.is_waiting = is_waiting
+    },
+
     set_max_level(state, level: number) {
         state.max_level = level
     },

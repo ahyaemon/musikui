@@ -9,6 +9,7 @@ export interface SearchQuestonState {
     max_level: number
     max_col: number
     old_contest_infos: OldContestInfo[]
+    is_waiting: boolean
 }
 
 /**

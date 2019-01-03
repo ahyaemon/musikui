@@ -18,6 +18,7 @@ export const state: SearchResultState = {
         max_col: 10,
     },
     musikuis_with_contest_info: [],
+    is_waiting: false,
 }
 
 export const search_result_store: Module<SearchResultState, RootState> = {

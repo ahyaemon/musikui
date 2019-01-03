@@ -20,6 +20,7 @@ export const state: SearchQuestonState = {
     max_col: 10,
     max_level: 10,
     old_contest_infos: [],
+    is_waiting: false,
 }
 
 export const search_question_store: Module<SearchQuestonState, RootState> = {

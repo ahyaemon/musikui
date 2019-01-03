@@ -24,4 +24,8 @@ export const getters: GetterTree<NewContestState, RootState> = {
         })
     },
 
+    is_waiting(state): boolean {
+        return state.is_waiting
+    },
+
 }

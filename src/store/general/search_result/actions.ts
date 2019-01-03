@@ -21,6 +21,7 @@ export const actions: ActionTree<SearchResultState, RootState> = {
             },
         }).then((response) => {
             commit("set_musikuis_with_contest_info", response)
+            commit("set_is_waiting", false)
         })
     },
 

@@ -9,16 +9,16 @@ load_icons()
 Vue.config.productionTip = false
 
 Vue.use(VueScrollTo as any, {
-  duration: 1000,
-  easing: "ease",
+    duration: 1000,
+    easing: "ease",
 })
 router.beforeEach((to: any, from: any, next: any) => {
-  // ページタイトルの設定
-  document.title = to.meta.title
-  next()
+    // ページタイトルの設定
+    document.title = to.meta.title
+    next()
 })
 new Vue({
-  router,
-  store,
-  render: (h) => h(App),
+    router,
+    store,
+    render: (h) => h(App),
 }).$mount("#app")

@@ -7,6 +7,10 @@ import Musikui from "@/domain/Musikui"
 
 export const getters: GetterTree<SearchQuestonState, RootState> = {
 
+    is_waiting(state): boolean {
+        return state.is_waiting
+    },
+
     search_condition(state): SearchCondition {
         return state.search_condition
     },

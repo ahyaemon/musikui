@@ -78,6 +78,7 @@
 <style lang="scss" scoped>
     .musikui-article {
         margin: 10px 0 10px 0;
+        padding: 15px 0 0 0;
         text-align: center;
     }
 

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Spinner :is_active="is_waiting"/>
         <MCard class="top">
             <MCardTitle>今週の問題</MCardTitle>
             <MCardBody>
@@ -39,15 +40,17 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator"
+    import { Spinner } from "@/components/spinner"
     import { MCard, MCardBody, MCardTitle } from "@/components/card"
     import { MMusikuiArticle, MRespondentList, MJumpList } from "@/components/contest"
-    import { Getter, Action } from "vuex-class"
+    import { Mutation, Getter, Action } from "vuex-class"
     import Contest from "@/domain/Contest"
     import MusikuiArticle from "@/value_object/MusikuiArticle"
     const namespace = "general_store/new_contest_store"
 
     @Component({
         components: {
+            Spinner,
             MCard,
             MCardTitle,
             MCardBody,
@@ -58,6 +61,8 @@
     })
     export default class NewContestView extends Vue {
 
+        @Mutation("set_is_waiting", { namespace }) private set_is_waiting!: (is_waiting: boolean) => void
+        @Getter("is_waiting", { namespace }) private is_waiting!: boolean
         @Getter("prev_contest", { namespace }) private prev_contest!: Contest
         @Getter("current_contest", { namespace }) private current_contest!: Contest
         @Getter("musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle[]
@@ -65,7 +70,8 @@
         @Action("fetch_respondents", { namespace }) private fetch_respondents!: (params: any) => void
         private respondent_displayed: boolean = false
 
-        private created() {
+        private mounted() {
+            this.set_is_waiting(true)
             this.fetch_new_contest()
         }
 

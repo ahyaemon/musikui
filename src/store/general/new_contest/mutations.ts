@@ -28,4 +28,8 @@ export const mutations: MutationTree<NewContestState> = {
         state.prev_contest = ContestFactory.from_object(contest)
     },
 
+    set_is_waiting(state, is_waiting: boolean) {
+        state.is_waiting = is_waiting
+    },
+
 }

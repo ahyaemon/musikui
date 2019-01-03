@@ -12,7 +12,7 @@ export const actions: ActionTree<NewContestState, RootState> = {
      * 今storeにあるcontestが最新でない場合、最新のcontestを取得する
      * @param param0
      */
-    fetch_new_contest({ commit, state }): void {
+    fetch_new_contest({ commit, state }) {
         Fetcher.get({
             controller,
             method: "get_current_contest_id",
@@ -20,9 +20,10 @@ export const actions: ActionTree<NewContestState, RootState> = {
         }).then((current_contest_id) => {
             // storeのcontestが最新ならreturn
             if (state.current_contest.id === current_contest_id) {
+                commit("set_is_waiting", false)
                 return
             }
-
+            // commit("set_is_waiting", true)
             // 最新contestの取得
             Fetcher.get({
                 controller,
@@ -31,6 +32,7 @@ export const actions: ActionTree<NewContestState, RootState> = {
             }).then((response) => {
                 commit("set_current_contest_from_object", response.current_contest)
                 commit("set_prev_contest", response.prev_contest)
+                commit("set_is_waiting", false)
             })
         })
     },

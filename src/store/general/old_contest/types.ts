@@ -5,4 +5,5 @@ import { Difficulty } from "@/value_object/Difficulty"
 
 export interface OldContestState {
     contest: Contest
+    is_waiting: boolean
 }

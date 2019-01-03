@@ -12,6 +12,7 @@ export const actions: ActionTree<OldContestState, RootState> = {
             params: { contest_id },
         }).then((response) => {
             commit("set_contest", response)
+            commit("set_is_waiting", false)
         })
     },
 

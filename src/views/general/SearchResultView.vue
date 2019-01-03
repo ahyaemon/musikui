@@ -1,12 +1,14 @@
 <template>
     <div>
+        <Spinner :is_active="is_waiting"/>
         <MCard>
-            <h2>検索</h2>
+            <MCardTitle>過去問たち</MCardTitle>
             <MSearchForm />
         </MCard>
 
         <MCard>
-            <h3>検索結果</h3>
+            <MCardTitle>検索結果</MCardTitle>
+            <MCardSubtitle>検索条件</MCardSubtitle>
             <p>{{ search_result_label }}</p>
             <p>{{ search_result_amount }}件</p>
         </MCard>
@@ -20,8 +22,9 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component } from "vue-property-decorator"
+    import { Spinner } from "@/components/spinner"
     import { MSearchForm } from "@/components/search"
-    import { MCard } from "@/components/card"
+    import { MCard, MCardTitle, MCardSubtitle, MCardBody } from "@/components/card"
     import { MMusikuiArticle } from "@/components/contest"
     import SearchCondition from "@/value_object/SearchCondition"
     import { Getter, Action, Mutation } from "vuex-class"
@@ -34,13 +37,19 @@
 
     @Component({
         components: {
+            Spinner,
             MSearchForm,
             MCard,
+            MCardTitle,
+            MCardSubtitle,
+            MCardBody,
             MMusikuiArticle,
         },
     })
     export default class SearchQuestionPage extends Vue {
 
+        @Mutation("set_is_waiting", { namespace }) private set_is_waiting!: (is_waiting: boolean) => void
+        @Getter("is_waiting", { namespace }) private is_waiting!: boolean
         @Action("set_searched_condition", { namespace }) private set_searched_condition!: (params: any) => void
         @Action("search_question", { namespace }) private search_question!: () => void
         @Getter("musikui_articles", { namespace }) private musikui_articles!: MusikuiArticle
@@ -48,15 +57,17 @@
         @Getter("search_result_amount", { namespace }) private search_result_amount!: number
 
         // urlからsearch_conditionを復元する用
-        @Action("set_search_condition", { namespace: "search_question_store" }) private set_search_condition!: (params: any) => void
+        @Action("set_search_condition", { namespace: "general_store/search_question_store" }) private set_search_condition!: (params: any) => void
 
-        private created() {
+        private mounted() {
+            this.set_is_waiting(true)
             this.set_searched_condition(this.$route.params)
             this.set_search_condition(this.$route.params)
             this.search_question()
         }
 
         private beforeRouteUpdate(to: any, from: any, next: () => void) {
+            this.set_is_waiting(true)
             this.set_searched_condition(to.params)
             this.set_search_condition(to.params)
             this.search_question()

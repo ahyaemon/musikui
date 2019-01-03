@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Spinner :is_active="is_waiting"/>
         <MCard>
             <MCardTitle>過去問たち</MCardTitle>
             <MSearchForm />
@@ -13,6 +14,7 @@
 <script lang="ts">
     import Vue from "vue"
     import { Component } from "vue-property-decorator"
+    import { Spinner } from "@/components/spinner"
     import { MSearchForm, MOldContestList } from "@/components/search"
     import { MCard, MCardTitle, MCardBody } from "@/components/card"
     import SearchCondition from "@/value_object/SearchCondition"
@@ -21,6 +23,7 @@
 
     @Component({
         components: {
+            Spinner,
             MSearchForm,
             MOldContestList,
             MCard,
@@ -28,6 +31,8 @@
         },
     })
     export default class SearchQuestionPage extends Vue {
+        @Mutation("set_is_waiting", { namespace }) private set_is_waiting!: (is_waiting: boolean) => void
+        @Getter("is_waiting", { namespace }) private is_waiting!: boolean
         @Action("fetch_max_level_and_col", { namespace }) private fetch_max_level_and_col!: () => void
         @Action("fetch_old_contest_infos", { namespace }) private fetch_old_contest_infos!: () => void
 
@@ -36,8 +41,8 @@
          * - [最大レベル/最大列数]
          * - [過去コンテストの情報]
          */
-        private created() {
-            // TODO こいつらを実装する
+        private mounted() {
+            this.set_is_waiting(true)
             this.fetch_max_level_and_col()
             this.fetch_old_contest_infos()
         }
