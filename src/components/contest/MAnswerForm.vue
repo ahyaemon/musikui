@@ -35,8 +35,8 @@
         @Prop() private mark!: string
         @Prop() private musikui_id!: number
 
-        private left_answers: number[] = [306, 7]
-        private right_answer: number = 2142
+        private left_answers: number[] = []
+        private right_answer: number = 0
         private is_correct: boolean = false
         private answer_error_message: string = ""
         private answer_datetime: string = ""

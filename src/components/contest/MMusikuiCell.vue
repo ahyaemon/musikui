@@ -2,7 +2,7 @@
     <td :class="cellClass">
         <template v-if="is_hide">
             <div class="cell">
-                <input class="cell-hide" type="text"/>
+                <input class="cell-hide" type="number"/>
             </div>
         </template>
         <template v-else-if="is_bar">
