@@ -12,9 +12,11 @@
                 <div>
                     <p>
                         <span>前回の最難問</span>
-                        <span>Q{{ prev_last_musikui_number }} (Lv. {{ prev_last_musikui.level }})</span>
-                        <span>回答者様</span>
-                        <MRespondentList :respondents="prev_last_musikui.respondents"/>
+                        <template v-if="prev_last_musikui != null">
+                            <span>Q{{ prev_last_musikui_number }} (Lv. {{ prev_last_musikui.level }})</span>
+                            <span>回答者様</span>
+                            <MRespondentList :respondents="prev_last_musikui.respondents"/>
+                        </template>
                     </p>
                     <!-- 全回答者をドロップダウンリストで表示する形式はやりすぎな気がする -->
                     <!-- <a @click="switch_respondent_displayed">
