@@ -1,9 +1,9 @@
 <template>
     <div id="index">
         <MNav :links="links" title="虫食い算やろうぜ！！"/>
-        <main>
+        <div class="main">
             <router-view/>
-        </main>
+        </div>
         <MFooter/>
     </div>
 </template>
@@ -38,7 +38,7 @@
         background-image: url("../..//assets/background.jpg");
         background-repeat: repeat;
 
-        main {
+        .main {
             padding-top: 80px;
         }
     }
