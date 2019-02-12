@@ -27,8 +27,8 @@
     })
     export default class MCommentForm extends Vue {
         private commented: boolean = false
-        private name: string = "testman"
-        private comment: string = "test comment"
+        private name: string = ""
+        private comment: string = ""
         private comment_error_message: string = ""
         @Prop() private answer_datetime!: string
         @Prop() private musikui_id!: number

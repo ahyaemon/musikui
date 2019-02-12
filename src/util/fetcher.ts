@@ -1,6 +1,7 @@
 import axios from "axios"
 import router from "@/route/router"
 import { state } from "@/store/mgr/auth"
+import qs from "qs"
 
 interface FetchParams {
     controller: string,
@@ -34,15 +35,9 @@ export default class Fetcher {
     }
 
     public static async post(fetch_params: FetchParams): Promise<any> {
-        const search_params = new URLSearchParams()
-        search_params.append("mapping", fetch_params.method)
-        for (const key of Object.keys(fetch_params.params)) {
-            search_params.append(key, fetch_params.params[key])
-        }
-
         let res
         await axios.post(`${base_url}/${fetch_params.controller}`,
-            search_params,
+            qs.stringify({...fetch_params.params, mapping: fetch_params.method}),
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
             },
