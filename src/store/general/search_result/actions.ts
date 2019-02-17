@@ -14,7 +14,7 @@ export const actions: ActionTree<SearchResultState, RootState> = {
 
     search_question({ commit, state }): void {
         fetcher.get({
-            controller: "SearchResultController.php",
+            controller: "SearchResultController",
             method: "search_question",
             params: {
                 condition: state.searched_condition,
