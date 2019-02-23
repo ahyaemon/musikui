@@ -18,7 +18,7 @@ export default class Fetcher {
         params.mapping = fetch_params.method
 
         let res
-        await axios.get(`${base_url}/${fetch_params.controller}`, {
+        await axios.get(`${base_url}/${fetch_params.controller}.php`, {
             params,
         }).then((response) => {
             res = response.data
@@ -36,7 +36,7 @@ export default class Fetcher {
 
     public static async post(fetch_params: FetchParams): Promise<any> {
         let res
-        await axios.post(`${base_url}/${fetch_params.controller}`,
+        await axios.post(`${base_url}/${fetch_params.controller}.php`,
             qs.stringify({...fetch_params.params, mapping: fetch_params.method}),
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -67,7 +67,7 @@ export default class Fetcher {
         }
 
         let res
-        await axios.post(`${base_url}/${fetch_params.controller}`,
+        await axios.post(`${base_url}/${fetch_params.controller}.php`,
             form_data,
             {
                 headers: {"Content-Type": "multipart/form-data" },
