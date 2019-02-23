@@ -34,6 +34,10 @@
                             m.id = r.musikui_id
                 WHERE
                     c.id = '$id'
+                ORDER BY
+                    c.id,
+                    m.id,
+                    r.answer_datetime
             ";
             return $sql;
         }
@@ -114,6 +118,10 @@
                     musikui.ncol <= '{$condition->max_col}'
                     {$mark_in_sql}
                     {$not_in}
+                ORDER BY
+                    contest.id,
+                    musikui.id,
+                    respondent.answer_datetime
             ";
             return $sql;
         }
