@@ -19,7 +19,7 @@ export const mutations: MutationTree<SearchResultState> = {
     set_musikuis_with_contest_info(state, records: any[]): void {
         state.musikuis_with_contest_info = records.map((record) => {
             return {
-                date: new MusikuiDate(record.date),
+                date: MusikuiDate.from_string(record.date),
                 question_number: record.question_number,
                 musikui: MusikuiFactory.from_object(record.musikui),
             }

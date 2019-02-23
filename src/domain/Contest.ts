@@ -7,7 +7,7 @@ export default class Contest {
     public static default() {
         return new Contest(
             0,
-            new MusikuiDate("2000/01/01"),
+            MusikuiDate.from_string("2000/01/01"),
             "default contest comment",
             [Musikui.default()],
         )

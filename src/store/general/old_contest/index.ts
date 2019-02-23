@@ -13,7 +13,7 @@ import MusikuiDate from "@/value_object/MusikuiDate"
 export const state: OldContestState = {
     contest: new Contest(
         0,
-        new MusikuiDate("2000/01/01"),
+        MusikuiDate.from_string("2000/01/01"),
         "ロードちぅ",
         [],
     ),
