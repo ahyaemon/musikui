@@ -12,7 +12,7 @@ import MusikuiDate from "@/value_object/MusikuiDate"
 
 export const state: NewContestMgrState = {
     files: undefined,
-    publish_date: new MusikuiDate("2018/01/01"),
+    publish_date: MusikuiDate.from_string("2018/01/01"),
     recent_contests: {
         contests: [],
         current_contest_id: 0,

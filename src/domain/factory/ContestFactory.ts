@@ -7,7 +7,7 @@ export default class ContestFactory {
     public static from_object(object: any): Contest {
         return new Contest(
             object.id,
-            new MusikuiDate(object.date),
+            MusikuiDate.from_string(object.date),
             object.comment,
             object.musikuis.map((musikui: any) => {
                 return MusikuiFactory.from_object(musikui)
@@ -17,7 +17,7 @@ export default class ContestFactory {
     public static from_id_and_date(id: number, date: string): Contest {
         return new Contest(
             id,
-            new MusikuiDate(date),
+            MusikuiDate.from_string(date),
             "",
             [],
         )

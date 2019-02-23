@@ -36,7 +36,7 @@
                 </div>
                 <br>
                 <hr>
-                <p>次回は {{ current_contest.date.next_sunday().format() }} になります。</p>
+                <p>次回は {{ current_contest.date.next_month_first_sunday().format() }} になります。</p>
                 <p>それでは、問題をお楽しみください</p>
                 <MJumpList :musikuis="current_contest.musikuis"/>
             </MCardBody>

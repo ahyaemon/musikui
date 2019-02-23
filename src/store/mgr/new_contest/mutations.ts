@@ -7,12 +7,12 @@ import Contest from "@/domain/Contest"
 export const mutations: MutationTree<NewContestMgrState> = {
 
     set_publish_date(state, date: string) {
-        state.publish_date = new MusikuiDate(date)
+        state.publish_date = MusikuiDate.from_string(date)
     },
 
     set_next_sunday(state) {
         const today = new Date()
-        const musikui_today = new MusikuiDate(today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate())
+        const musikui_today = MusikuiDate.from_string(today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate())
         const next_sunday = musikui_today.next_sunday()
         state.publish_date = next_sunday
     },
