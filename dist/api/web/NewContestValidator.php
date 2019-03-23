@@ -27,13 +27,13 @@
             for($i = 0; $i < count($answered_formula->lefts); $i++) {
                 if($answered_formula->lefts[$i] != $correct_formula->lefts[$i]) {
                     array_push($errors, [ "field" => "answer", "message" => "答えが間違っとるぜ"]);
-                    return $erros;
+                    return $errors;
                 }
             }
 
             if($answered_formula->right != $correct_formula->right) {
                 array_push($errors, [ "field" => "answer", "message" => "答えが間違っとるぜ"]);
-                return $erros;
+                return $errors;
             }
 
             return $errors;

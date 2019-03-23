@@ -47,7 +47,7 @@
             $correct_formula = ContestRepository::find_answer($musikui_id);
             $answer_errors = NewContestValidator::check_answer($formula, $correct_formula);
             if (count($answer_errors) > 0) {
-                return json_encode(["errors" => $validation_errors]);
+                return json_encode(["errors" => $answer_errors]);
             }
 
             session_start();
